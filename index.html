@@ -1,246 +1,633 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang=\"en\">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Serene Space Designs – Luxury Architecture & Interior Design</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="htt...ap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset=\"utf-8\" />
+  <meta name=\"viewport\" content=\"width=device-width,initial-scale=1,viewport-fit=cover\" />
+  <meta name=\"theme-color\" content=\"#efeae1\" />
+  <meta name=\"color-scheme\" content=\"light\" />
+
+  <title>Serene Space Designs — Architecture &amp; Interiors</title>
+  <meta name=\"description\" content=\"Serene Space Designs is an atelier for quiet residential architecture and tactile interiors. Milano · Como · Lake of Lugano.\" />
+
+  <!-- Preconnect -->
+  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\" />
+  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin />
+  <link rel=\"preconnect\" href=\"https://images.unsplash.com\" />
+
+  <!-- Typography: Fraunces (editorial serif) + Geist (restrained sans) + JetBrains Mono (technical) -->
+  <link
+    href=\"https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300;9..144,400;9..144,500;9..144,600&family=Geist:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap\"
+    rel=\"stylesheet\"
+  />
+
+  <link rel=\"stylesheet\" href=\"style.css\" />
 </head>
 <body>
-    <!-- SECTION 1: IMMERSIVE HERO -->
-    <section class="hero" id="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">Serene Space</h1>
-                <p class="hero-subtitle">Transcendent architecture for the thoughtful few.</p>
-            </div>
-            <div class="hero-image-wrapper">
-                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=800&fit=crop" alt="Serene minimalist architecture" class="hero-image" loading="eager">
-            </div>
+
+  <!-- ────────────────────────────────────────────────
+       LOADER — Slow, intentional, never rushed.
+       ──────────────────────────────────────────────── -->
+  <div class=\"loader\" data-loader aria-hidden=\"true\">
+    <div class=\"loader__inner\">
+      <span class=\"loader__label\" data-loader-label>Serene Space Designs</span>
+      <span class=\"loader__count\"><span data-loader-count>0</span><i>%</i></span>
+      <span class=\"loader__line\"><i data-loader-line></i></span>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────────────────────────
+       NAVIGATION — Minimal, fixed, breathes with scroll.
+       ──────────────────────────────────────────────── -->
+  <header class=\"nav\" data-nav>
+    <a class=\"nav__mark\" href=\"#top\" aria-label=\"Serene Space Designs — home\">
+      <span class=\"nav__mark-symbol\">S<i>·</i>S</span>
+      <span class=\"nav__mark-word\">Serene Space</span>
+    </a>
+
+    <nav class=\"nav__links\" aria-label=\"Primary\">
+      <a href=\"#philosophy\">Philosophy</a>
+      <a href=\"#practice\">Practice</a>
+      <a href=\"#works\">Works</a>
+      <a href=\"#process\">Process</a>
+      <a href=\"#contact\">Contact</a>
+    </nav>
+
+    <a href=\"#contact\" class=\"nav__cta\">
+      <span>Begin a conversation</span>
+      <i aria-hidden=\"true\">↗</i>
+    </a>
+
+    <button class=\"nav__menu\" data-menu-toggle aria-label=\"Open menu\" aria-expanded=\"false\">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Mobile overlay menu -->
+  <div class=\"menu\" data-menu aria-hidden=\"true\">
+    <div class=\"menu__inner\">
+      <ul>
+        <li><a href=\"#philosophy\" data-menu-link>Philosophy</a></li>
+        <li><a href=\"#practice\" data-menu-link>Practice</a></li>
+        <li><a href=\"#works\" data-menu-link>Works</a></li>
+        <li><a href=\"#process\" data-menu-link>Process</a></li>
+        <li><a href=\"#contact\" data-menu-link>Contact</a></li>
+      </ul>
+      <div class=\"menu__foot\">
+        <span>Studio · Via Solferino 14, Milano</span>
+        <a href=\"mailto:hello@serenespace.studio\">hello@serenespace.studio</a>
+      </div>
+    </div>
+  </div>
+
+  <main id=\"top\">
+
+    <!-- ────────────────────────────────────────────────
+         SECTION 1 · HERO
+         Goal: Immediate emotional impact. One slow breath.
+         ──────────────────────────────────────────────── -->
+    <section class=\"hero\" data-section=\"hero\">
+      <div class=\"hero__frame\">
+        <img
+          class=\"hero__image\"
+          data-hero-image
+          src=\"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2400&q=80\"
+          alt=\"A travertine-lined living room with afternoon light\"
+          loading=\"eager\"
+          decoding=\"async\"
+        />
+        <div class=\"hero__veil\" aria-hidden=\"true\"></div>
+      </div>
+
+      <div class=\"hero__copy\">
+        <span class=\"eyebrow\" data-reveal>
+          <i>·</i> Architecture &amp; Interiors — Est. 2009
+        </span>
+
+        <h1 class=\"display\" data-split data-split-mode=\"lines\">
+          Space,<br/>
+          <em>slowed</em> down.
+        </h1>
+
+        <p class=\"hero__sub\" data-reveal data-reveal-delay=\"0.6\">
+          An atelier composing residences,<br/>
+          retreats and quiet interiors across<br/>
+          Milano, Como and the Lake of Lugano.
+        </p>
+
+        <div class=\"hero__meta\" data-reveal data-reveal-delay=\"0.9\">
+          <span>N 45.4642°</span>
+          <span>E 9.1900°</span>
+          <span>Milano — Italia</span>
         </div>
-        <div class="hero-scroll-indicator">
-            <span>Scroll</span>
-        </div>
+      </div>
+
+      <div class=\"hero__scroll\" data-reveal data-reveal-delay=\"1.1\" aria-hidden=\"true\">
+        <span>Scroll, slowly</span>
+        <i></i>
+      </div>
+
+      <div class=\"hero__index\" aria-hidden=\"true\">
+        <span>01 — Arrival</span>
+        <span>Vol. IX</span>
+      </div>
     </section>
 
-    <!-- SECTION 2: PHILOSOPHY -->
-    <section class="philosophy" id="philosophy">
-        <div class="philosophy-container">
-            <div class="philosophy-content">
-                <h2 class="section-title">Philosophy</h2>
-                <p class="philosophy-text">
-                    We believe architecture breathes.<br>
-                    Spaces should feel like they think.
-                </p>
-            </div>
-            <div class="philosophy-image">
-                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1000&h=600&fit=crop" alt="Minimalist interior design" loading="lazy">
-            </div>
-        </div>
+    <!-- ────────────────────────────────────────────────
+         MARQUEE — A single, slow horizontal whisper.
+         ──────────────────────────────────────────────── -->
+    <section class=\"marquee\" aria-hidden=\"true\">
+      <div class=\"marquee__track\" data-marquee>
+        <span>Residential Architecture</span><i>✦</i>
+        <span>Interior Atelier</span><i>✦</i>
+        <span>Material Research</span><i>✦</i>
+        <span>Bespoke Furniture</span><i>✦</i>
+        <span>Site &amp; Landscape</span><i>✦</i>
+        <span>Residential Architecture</span><i>✦</i>
+        <span>Interior Atelier</span><i>✦</i>
+        <span>Material Research</span><i>✦</i>
+        <span>Bespoke Furniture</span><i>✦</i>
+        <span>Site &amp; Landscape</span><i>✦</i>
+      </div>
     </section>
 
-    <!-- SECTION 3: SERVICES (EDITORIAL LAYOUT) -->
-    <section class="services" id="services">
-        <div class="services-container">
-            <h2 class="section-title">Services</h2>
-            
-            <div class="service-block service-1">
-                <div class="service-content">
-                    <h3 class="service-title">Architecture</h3>
-                    <p class="service-description">Buildings that breathe with purpose. Every line speaks. Every space listens.</p>
-                </div>
-                <div class="service-image">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop" alt="Architecture service" loading="lazy">
-                </div>
-            </div>
+    <!-- ────────────────────────────────────────────────
+         SECTION 2 · PHILOSOPHY
+         Goal: Slow down. Breathe. Make the user listen.
+         ──────────────────────────────────────────────── -->
+    <section class=\"philosophy\" id=\"philosophy\" data-section=\"philosophy\">
+      <div class=\"philosophy__rule\" aria-hidden=\"true\"><i data-rule></i></div>
 
-            <div class="service-block service-2">
-                <div class="service-image">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop" alt="Interior design service" loading="lazy">
-                </div>
-                <div class="service-content">
-                    <h3 class="service-title">Interior Design</h3>
-                    <p class="service-description">Spaces curated like exhibitions. Refined. Intentional. Timeless.</p>
-                </div>
-            </div>
+      <header class=\"section-head\">
+        <span class=\"section-head__no\">§ 02</span>
+        <span class=\"section-head__title\">Philosophy</span>
+      </header>
 
-            <div class="service-block service-3">
-                <div class="service-content">
-                    <h3 class="service-title">Spatial Strategy</h3>
-                    <p class="service-description">Understanding how humans inhabit space. Design that serves experience.</p>
-                </div>
-                <div class="service-image">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop" alt="Spatial strategy service" loading="lazy">
-                </div>
-            </div>
-        </div>
+      <h2 class=\"philosophy__quote display\" data-split data-split-mode=\"words\">
+        We do not decorate. We design the <em>air</em> between objects — the
+        pause between rooms, the <em>weight</em> of a doorway, the hour a wall
+        meets the sun.
+      </h2>
+
+      <div class=\"philosophy__foot\">
+        <p data-reveal>
+          A practice founded in Milano in 2009 by Elena Caradonna and
+          Tommaso Reni. Our work is residential, slow, and devotional
+          to the climate of a place.
+        </p>
+        <figure data-reveal data-reveal-delay=\"0.2\">
+          <img
+            src=\"https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=1600&q=80\"
+            alt=\"A quiet corridor in lime plaster\"
+            loading=\"lazy\"
+          />
+        </figure>
+      </div>
     </section>
 
-    <!-- SECTION 4: FEATURED PROJECTS -->
-    <section class="projects" id="projects">
-        <div class="projects-container">
-            <h2 class="section-title">Featured Projects</h2>
-            
-            <article class="project" id="project-1">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=700&fit=crop" alt="Riverside Residences" loading="lazy">
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Riverside Residences</h3>
-                    <p class="project-description">A series of thoughtfully designed homes nestled in natural landscape. Stone, wood, and stillness.</p>
-                    <span class="project-type">Architecture + Interiors</span>
-                </div>
-            </article>
+    <!-- ────────────────────────────────────────────────
+         SECTION 3 · PRACTICE (Services)
+         Editorial, no cards, no icon grids — large imagery
+         layered against typographic statements.
+         ──────────────────────────────────────────────── -->
+    <section class=\"practice\" id=\"practice\" data-section=\"practice\">
+      <header class=\"section-head\">
+        <span class=\"section-head__no\">§ 03</span>
+        <span class=\"section-head__title\">Practice</span>
+      </header>
 
-            <article class="project" id="project-2">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=700&fit=crop" alt="The Sanctuary Wellness Center" loading="lazy">
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">The Sanctuary Wellness Center</h3>
-                    <p class="project-description">A retreat designed for restoration. Light, material, and proportion create therapeutic space.</p>
-                    <span class="project-type">Architecture + Spatial Design</span>
-                </div>
-            </article>
+      <article class=\"practice__row practice__row--a\">
+        <div class=\"practice__num\"><span>01</span></div>
+        <h3 class=\"practice__name display\">Architecture</h3>
+        <p class=\"practice__copy\">
+          Residences, villas and retreats — drawn from the orientation of a site,
+          the season of its light, and the memory of its stone.
+        </p>
+        <figure class=\"practice__media\" data-parallax=\"0.12\">
+          <img
+            src=\"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=80\"
+            alt=\"A modern residence carved into a hillside\"
+            loading=\"lazy\"
+          />
+        </figure>
+      </article>
 
-            <article class="project" id="project-3">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=700&fit=crop" alt="Meridian Studio Collective" loading="lazy">
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Meridian Studio Collective</h3>
-                    <p class="project-description">Creative workspace that inspires collaboration. Minimalist structure, maximum intention.</p>
-                    <span class="project-type">Interiors + Spatial Strategy</span>
-                </div>
-            </article>
-        </div>
+      <article class=\"practice__row practice__row--b\">
+        <div class=\"practice__num\"><span>02</span></div>
+        <h3 class=\"practice__name display\">Interiors</h3>
+        <p class=\"practice__copy\">
+          Tactile rooms composed in stone, oak and linen. Each interior is a
+          slow inventory of materials chosen for the way they will age.
+        </p>
+        <figure class=\"practice__media\" data-parallax=\"0.10\">
+          <img
+            src=\"https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=1800&q=80\"
+            alt=\"An interior in oak and warm beige\"
+            loading=\"lazy\"
+          />
+        </figure>
+      </article>
+
+      <article class=\"practice__row practice__row--c\">
+        <div class=\"practice__num\"><span>03</span></div>
+        <h3 class=\"practice__name display\">Material<br/>Research</h3>
+        <p class=\"practice__copy\">
+          A continuous study of stone, plaster, timber and metal. Carried out
+          with quarries, mills and artisans across Italy and Switzerland.
+        </p>
+        <figure class=\"practice__media\" data-parallax=\"0.14\">
+          <img
+            src=\"https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1800&q=80\"
+            alt=\"A study of travertine and bronze\"
+            loading=\"lazy\"
+          />
+        </figure>
+      </article>
+
+      <article class=\"practice__row practice__row--d\">
+        <div class=\"practice__num\"><span>04</span></div>
+        <h3 class=\"practice__name display\">Atelier<br/><em>— bespoke</em></h3>
+        <p class=\"practice__copy\">
+          A small atelier producing furniture, doors and fittings in
+          collaboration with the woodworkers and bronze foundries of Brianza.
+        </p>
+        <figure class=\"practice__media\" data-parallax=\"0.10\">
+          <img
+            src=\"https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1800&q=80\"
+            alt=\"A bespoke detail in oak and bronze\"
+            loading=\"lazy\"
+          />
+        </figure>
+      </article>
     </section>
 
-    <!-- SECTION 5: PROCESS (CINEMATIC PROGRESSION) -->
-    <section class="process" id="process">
-        <div class="process-container">
-            <h2 class="section-title">Process</h2>
-            
-            <div class="process-stage" data-stage="1">
-                <div class="stage-number">01</div>
-                <h3 class="stage-title">Discovery</h3>
-                <p class="stage-text">We listen. We study light. We understand how humans inhabit space.</p>
-            </div>
+    <!-- ────────────────────────────────────────────────
+         SECTION 4 · WORKS — Monumental, horizontal.
+         The one (and only) horizontal sequence on the site.
+         ──────────────────────────────────────────────── -->
+    <section class=\"works\" id=\"works\" data-section=\"works\">
+      <header class=\"works__head\">
+        <span class=\"section-head__no\">§ 04</span>
+        <h2 class=\"works__title display\" data-split data-split-mode=\"lines\">
+          Selected<br/><em>works,</em> 2019&ndash;2025
+        </h2>
+        <p class=\"works__lede\">
+          A quiet portfolio of completed residences and interiors.
+          Drag, scroll or use the arrows to move horizontally.
+        </p>
+      </header>
 
-            <div class="process-stage" data-stage="2">
-                <div class="stage-number">02</div>
-                <h3 class="stage-title">Conceptualization</h3>
-                <p class="stage-text">Ideas emerge from silence. Sketches become philosophy. Philosophy becomes space.</p>
-            </div>
+      <div class=\"works__rail\" data-rail>
+        <div class=\"works__track\" data-rail-track>
 
-            <div class="process-stage" data-stage="3">
-                <div class="stage-number">03</div>
-                <h3 class="stage-title">Refinement</h3>
-                <p class="stage-text">Every detail is questioned. Beauty emerges from restraint.</p>
+          <figure class=\"work\">
+            <div class=\"work__frame\">
+              <img
+                src=\"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=80\"
+                alt=\"Casa Travertino, Brera\"
+                loading=\"lazy\"
+              />
             </div>
+            <figcaption>
+              <span class=\"work__no\">No. 01</span>
+              <h3 class=\"work__name\">Casa Travertino</h3>
+              <p>Brera · Milano · 2024 — 320 m²</p>
+            </figcaption>
+          </figure>
 
-            <div class="process-stage" data-stage="4">
-                <div class="stage-number">04</div>
-                <h3 class="stage-title">Realization</h3>
-                <p class="stage-text">Vision becomes matter. Intention becomes experience.</p>
+          <figure class=\"work\">
+            <div class=\"work__frame\">
+              <img
+                src=\"https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=2000&q=80\"
+                alt=\"Villa Helios, Lake Como\"
+                loading=\"lazy\"
+              />
             </div>
+            <figcaption>
+              <span class=\"work__no\">No. 02</span>
+              <h3 class=\"work__name\">Villa Helios</h3>
+              <p>Tremezzo · Lake Como · 2023 — 740 m²</p>
+            </figcaption>
+          </figure>
+
+          <figure class=\"work\">
+            <div class=\"work__frame\">
+              <img
+                src=\"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=2000&q=80\"
+                alt=\"Atelier 47, Porta Romana\"
+                loading=\"lazy\"
+              />
+            </div>
+            <figcaption>
+              <span class=\"work__no\">No. 03</span>
+              <h3 class=\"work__name\">Atelier 47</h3>
+              <p>Porta Romana · Milano · 2024 — 210 m²</p>
+            </figcaption>
+          </figure>
+
+          <figure class=\"work\">
+            <div class=\"work__frame\">
+              <img
+                src=\"https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=2000&q=80\"
+                alt=\"Pavilion Noir, Engadin\"
+                loading=\"lazy\"
+              />
+            </div>
+            <figcaption>
+              <span class=\"work__no\">No. 04</span>
+              <h3 class=\"work__name\">Pavilion Noir</h3>
+              <p>Engadin · Switzerland · 2022 — 180 m²</p>
+            </figcaption>
+          </figure>
+
+          <figure class=\"work\">
+            <div class=\"work__frame\">
+              <img
+                src=\"https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=2000&q=80\"
+                alt=\"Casa Lucina, Lugano\"
+                loading=\"lazy\"
+              />
+            </div>
+            <figcaption>
+              <span class=\"work__no\">No. 05</span>
+              <h3 class=\"work__name\">Casa Lucina</h3>
+              <p>Lugano · Switzerland · 2025 — 410 m²</p>
+            </figcaption>
+          </figure>
+
         </div>
+      </div>
+
+      <div class=\"works__progress\" aria-hidden=\"true\">
+        <span class=\"works__progress-label\">Drag · Scroll</span>
+        <span class=\"works__progress-bar\"><i data-rail-progress></i></span>
+        <span class=\"works__progress-count\"><i data-rail-index>01</i><em>/05</em></span>
+      </div>
     </section>
 
-    <!-- SECTION 6: MATERIALS -->
-    <section class="materials" id="materials">
-        <div class="materials-container">
-            <h2 class="section-title">Materials + Craft</h2>
-            
-            <div class="material-grid">
-                <div class="material-item" data-material="travertine">
-                    <div class="material-swatch travertine-swatch"></div>
-                    <h3 class="material-name">Travertine</h3>
-                    <p class="material-note">Timeless. Breathes with light.</p>
-                </div>
-                <div class="material-item" data-material="oak">
-                    <div class="material-swatch oak-swatch"></div>
-                    <h3 class="material-name">European Oak</h3>
-                    <p class="material-note">Warm. Ages with grace.</p>
-                </div>
-                <div class="material-item" data-material="charcoal">
-                    <div class="material-swatch charcoal-swatch"></div>
-                    <h3 class="material-name">Matte Charcoal</h3>
-                    <p class="material-note">Subtle. Creates depth.</p>
-                </div>
-                <div class="material-item" data-material="stone">
-                    <div class="material-swatch stone-swatch"></div>
-                    <h3 class="material-name">Limestone</h3>
-                    <p class="material-note">Permanent. Holds silence.</p>
-                </div>
-            </div>
+    <!-- ────────────────────────────────────────────────
+         SECTION 5 · PROCESS — Cinematic progression.
+         No boxes. Long vertical breath. Four quiet acts.
+         ──────────────────────────────────────────────── -->
+    <section class=\"process\" id=\"process\" data-section=\"process\">
+      <header class=\"section-head section-head--center\">
+        <span class=\"section-head__no\">§ 05</span>
+        <span class=\"section-head__title\">Process</span>
+      </header>
 
-            <div class="material-image">
-                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1000&h=600&fit=crop" alt="Material details and textures" loading="lazy">
-            </div>
-        </div>
+      <h2 class=\"process__title display\" data-split data-split-mode=\"lines\">
+        Four acts.<br/>One <em>long</em> conversation.
+      </h2>
+
+      <ol class=\"process__acts\">
+        <li class=\"process__act\" data-act>
+          <span class=\"process__roman\">I.</span>
+          <h3 class=\"process__name\">Listening</h3>
+          <p>
+            We begin with silence. A first visit to the site, in the season
+            you intend to live there. We take photographs of the light, not
+            the walls.
+          </p>
+        </li>
+
+        <li class=\"process__act\" data-act>
+          <span class=\"process__roman\">II.</span>
+          <h3 class=\"process__name\">Drafting</h3>
+          <p>
+            Six months of pencil. Plans, sections, models in plaster and
+            cardboard. We share drawings — never renders — until the
+            architecture is settled.
+          </p>
+        </li>
+
+        <li class=\"process__act\" data-act>
+          <span class=\"process__roman\">III.</span>
+          <h3 class=\"process__name\">Materialising</h3>
+          <p>
+            Stone is chosen at the quarry. Oak is selected from the log.
+            Every threshold, handle and joint is detailed by hand.
+          </p>
+        </li>
+
+        <li class=\"process__act\" data-act>
+          <span class=\"process__roman\">IV.</span>
+          <h3 class=\"process__name\">Living</h3>
+          <p>
+            We return after a year. We adjust a curtain, a shelf, a door.
+            A house is finished only when it is forgotten.
+          </p>
+        </li>
+      </ol>
     </section>
 
-    <!-- SECTION 7: SOCIAL PROOF (QUIET ELEGANCE) -->
-    <section class="clients" id="clients">
-        <div class="clients-container">
-            <h2 class="section-title">Trusted By</h2>
-            
-            <div class="testimonials">
-                <blockquote class="testimonial" data-client="1">
-                    <p class="testimonial-text">"They understand that luxury is restraint."</p>
-                    <footer class="testimonial-author">— Architecture Digest</footer>
-                </blockquote>
+    <!-- ────────────────────────────────────────────────
+         SECTION 6 · MATERIAL — Tactile, subtle motion.
+         A horizontal strip of material plates that breathes.
+         ──────────────────────────────────────────────── -->
+    <section class=\"materials\" data-section=\"materials\">
+      <header class=\"section-head\">
+        <span class=\"section-head__no\">§ 06</span>
+        <span class=\"section-head__title\">Materials</span>
+      </header>
 
-                <blockquote class="testimonial" data-client="2">
-                    <p class="testimonial-text">"Every project feels like it was inevitable."</p>
-                    <footer class="testimonial-author">— Wallpaper*</footer>
-                </blockquote>
+      <h2 class=\"materials__lede display\" data-split data-split-mode=\"lines\">
+        Stone that <em>remembers</em>,<br/>timber that breathes.
+      </h2>
 
-                <blockquote class="testimonial" data-client="3">
-                    <p class="testimonial-text">"Spaces that make you believe in peace again."</p>
-                    <footer class="testimonial-author">— Designboom</footer>
-                </blockquote>
-            </div>
-
-            <div class="client-logos">
-                <p class="client-logos-label">Featured In</p>
-                <div class="logos-container">
-                    <span class="logo">Architectural Record</span>
-                    <span class="logo">Dwell</span>
-                    <span class="logo">Surface Magazine</span>
-                    <span class="logo">The Spaces</span>
-                </div>
-            </div>
-        </div>
+      <ul class=\"materials__list\">
+        <li data-material>
+          <figure>
+            <img src=\"https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80\" alt=\"Roman travertine\" loading=\"lazy\" />
+          </figure>
+          <span class=\"materials__no\">M·01</span>
+          <h4>Roman Travertine</h4>
+          <p>Tivoli · vein-cut · honed</p>
+        </li>
+        <li data-material>
+          <figure>
+            <img src=\"https://images.unsplash.com/photo-1604147495798-57beb5d6af73?auto=format&fit=crop&w=1200&q=80\" alt=\"European oak\" loading=\"lazy\" />
+          </figure>
+          <span class=\"materials__no\">M·02</span>
+          <h4>European Oak</h4>
+          <p>Brianza · rift-sawn · soaped</p>
+        </li>
+        <li data-material>
+          <figure>
+            <img src=\"https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=1200&q=80\" alt=\"Lime plaster\" loading=\"lazy\" />
+          </figure>
+          <span class=\"materials__no\">M·03</span>
+          <h4>Lime Plaster</h4>
+          <p>Marmorino · seven layers</p>
+        </li>
+        <li data-material>
+          <figure>
+            <img src=\"https://images.unsplash.com/photo-1582582494700-fbb44cd23c0c?auto=format&fit=crop&w=1200&q=80\" alt=\"Brushed bronze\" loading=\"lazy\" />
+          </figure>
+          <span class=\"materials__no\">M·04</span>
+          <h4>Brushed Bronze</h4>
+          <p>Cast · patinated · waxed</p>
+        </li>
+        <li data-material>
+          <figure>
+            <img src=\"https://images.unsplash.com/photo-1605883705077-8d3d3cebe78c?auto=format&fit=crop&w=1200&q=80\" alt=\"Belgian linen\" loading=\"lazy\" />
+          </figure>
+          <span class=\"materials__no\">M·05</span>
+          <h4>Belgian Linen</h4>
+          <p>Heavy weave · undyed</p>
+        </li>
+      </ul>
     </section>
 
-    <!-- SECTION 8: CLOSING EXPERIENCE -->
-    <section class="closing" id="closing">
-        <div class="closing-container">
-            <h2 class="closing-title">Ready for Transcendent Space?</h2>
-            <p class="closing-subtitle">Let's create something that matters.</p>
-            
-            <div class="cta-block">
-                <a href="mailto:hello@serenespacedesigns.com" class="cta-button">Start Your Project</a>
-                <p class="cta-note">Or explore our full portfolio</p>
-            </div>
+    <!-- ────────────────────────────────────────────────
+         SECTION 7 · SOCIAL PROOF — Quiet trust.
+         Two voices, large quotes, no logos parade.
+         ──────────────────────────────────────────────── -->
+    <section class=\"voices\" data-section=\"voices\">
+      <header class=\"section-head\">
+        <span class=\"section-head__no\">§ 07</span>
+        <span class=\"section-head__title\">In Print</span>
+      </header>
 
-            <footer class="footer">
-                <div class="footer-content">
-                    <p class="footer-text">Serene Space Designs © 2024</p>
-                    <p class="footer-text">Crafted for those who understand that architecture is a love language.</p>
-                </div>
-            </footer>
-        </div>
+      <div class=\"voices__grid\">
+        <blockquote class=\"voices__quote\" data-reveal>
+          <p>
+            “Caradonna and Reni design as if the house has always been there;
+            their work is less an act of building than of careful uncovering.”
+          </p>
+          <footer>
+            <span>Domus</span>
+            <i>·</i>
+            <span>Issue 1082</span>
+          </footer>
+        </blockquote>
+
+        <blockquote class=\"voices__quote\" data-reveal data-reveal-delay=\"0.2\">
+          <p>
+            “A studio that has reclaimed the most luxurious commodity in
+            contemporary architecture — patience.”
+          </p>
+          <footer>
+            <span>Wallpaper*</span>
+            <i>·</i>
+            <span>March, 2024</span>
+          </footer>
+        </blockquote>
+      </div>
+
+      <ul class=\"voices__press\" aria-label=\"Press\">
+        <li>Domus</li>
+        <li>Wallpaper*</li>
+        <li>AD Italia</li>
+        <li>Cereal</li>
+        <li>Casabella</li>
+        <li>Dezeen</li>
+      </ul>
     </section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/darkroomengineering/lenis@latest/bundled/lenis.js"></script>
-    <script src="script.js"></script>
+    <!-- ────────────────────────────────────────────────
+         SECTION 8 · ENDING — A final spatial moment.
+         Not a contact form. A long letter to the visitor.
+         ──────────────────────────────────────────────── -->
+    <section class=\"ending\" id=\"contact\" data-section=\"ending\">
+      <div class=\"ending__image\" aria-hidden=\"true\">
+        <img
+          src=\"https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&w=2400&q=80\"
+          alt=\"\"
+          loading=\"lazy\"
+        />
+      </div>
+
+      <div class=\"ending__inner\">
+        <span class=\"eyebrow\" data-reveal><i>·</i> § 08 — Coda</span>
+
+        <h2 class=\"ending__title display\" data-split data-split-mode=\"lines\">
+          Begin a <em>quiet</em><br/>conversation.
+        </h2>
+
+        <p class=\"ending__copy\" data-reveal data-reveal-delay=\"0.3\">
+          We take on a small number of commissions each year. If your
+          project asks for slowness, write to us in any season — we will
+          answer in the next.
+        </p>
+
+        <div class=\"ending__contact\" data-reveal data-reveal-delay=\"0.5\">
+          <a class=\"ending__mail\" href=\"mailto:hello@serenespace.studio\">
+            <span>hello@serenespace.studio</span>
+            <i aria-hidden=\"true\">↗</i>
+          </a>
+        </div>
+
+        <dl class=\"ending__meta\" data-reveal data-reveal-delay=\"0.7\">
+          <div>
+            <dt>Studio</dt>
+            <dd>Via Solferino 14<br/>20121 Milano · Italia</dd>
+          </div>
+          <div>
+            <dt>Hours</dt>
+            <dd>Tue — Fri<br/>10 : 00 — 18 : 00 CET</dd>
+          </div>
+          <div>
+            <dt>Telephone</dt>
+            <dd>+39 02 4948 7720</dd>
+          </div>
+          <div>
+            <dt>Coordinates</dt>
+            <dd>45.4719° N<br/>9.1810° E</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ────────────────────────────────────────────────
+         FOOTER — A long colophon, quietly editorial.
+         ──────────────────────────────────────────────── -->
+    <footer class=\"foot\">
+      <div class=\"foot__brand display\">Serene<br/>Space.</div>
+
+      <div class=\"foot__cols\">
+        <div>
+          <span>Visit</span>
+          <p>Via Solferino 14<br/>20121 Milano</p>
+        </div>
+        <div>
+          <span>Write</span>
+          <p><a href=\"mailto:hello@serenespace.studio\">hello@serenespace.studio</a></p>
+        </div>
+        <div>
+          <span>Follow</span>
+          <p>
+            <a href=\"#\" rel=\"noopener\">Instagram</a><br/>
+            <a href=\"#\" rel=\"noopener\">Are.na</a><br/>
+            <a href=\"#\" rel=\"noopener\">Journal</a>
+          </p>
+        </div>
+        <div>
+          <span>Colophon</span>
+          <p>Set in Fraunces &amp; Geist.<br/>Built in Milano, 2026.</p>
+        </div>
+      </div>
+
+      <div class=\"foot__rule\" aria-hidden=\"true\"></div>
+
+      <div class=\"foot__bottom\">
+        <span>© <span data-year>2026</span> · Serene Space Designs · All rights reserved.</span>
+        <span>P. IVA 09347820966</span>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Cursor (desktop only, progressively enhanced) -->
+  <div class=\"cursor\" data-cursor aria-hidden=\"true\">
+    <i></i>
+  </div>
+
+  <!-- Libraries -->
+  <script src=\"https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js\" defer></script>
+  <script src=\"https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js\" defer></script>
+  <script src=\"https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js\" defer></script>
+
+  <script src=\"script.js\" defer></script>
 </body>
 </html>
+"
+Observation: Create successful: /app/static_export/index.html
