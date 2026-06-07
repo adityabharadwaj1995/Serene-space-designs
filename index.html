@@ -1,236 +1,247 @@
+html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Serene Space Designs • Timeless Architecture & Interiors</title>
-    <meta name="description" content="Ultra-premium architecture and interior design studio crafting serene, monumental spaces.">
+    <title>Serene Space Designs – Luxury Architecture & Interior Design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="htt...ap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap');
-    </style>
 </head>
 <body>
-    <!-- NAV -->
-    <nav class="nav">
-        <div class="nav-content">
-            <a href="#" class="logo">SERENE</a>
-            <div class="nav-links">
-                <a href="#philosophy">Philosophy</a>
-                <a href="#services">Services</a>
-                <a href="#projects">Projects</a>
-                <a href="#process">Process</a>
-                <a href="#materials">Materials</a>
-                <a href="#journal">Journal</a>
+    <!-- SECTION 1: IMMERSIVE HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Serene Space</h1>
+                <p class="hero-subtitle">Transcendent architecture for the thoughtful few.</p>
             </div>
-            <button class="contact-btn">Begin Conversation</button>
-        </div>
-    </nav>
-
-    <!-- HERO -->
-    <section id="hero" class="hero">
-        <div class="hero-bg">
-            <img src="https://picsum.photos/id/1015/2000/1200" alt="Serene interior space" class="hero-image">
-        </div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1 class="hero-title">Spaces that breathe.<br>Timeless by design.</h1>
-                <p class="hero-subtitle">Architecture and interiors of quiet monumentality.</p>
-                <button onclick="document.getElementById('philosophy').scrollIntoView({ behavior: 'smooth' })" class="explore-btn">Explore the Experience</button>
+            <div class="hero-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=800&fit=crop" alt="Serene minimalist architecture" class="hero-image" loading="eager">
             </div>
         </div>
-        <div class="scroll-hint">
-            <span>Scroll to enter</span>
-            <div class="scroll-line"></div>
+        <div class="hero-scroll-indicator">
+            <span>Scroll</span>
         </div>
     </section>
 
-    <!-- PHILOSOPHY -->
-    <section id="philosophy" class="section philosophy">
-        <div class="container">
-            <div class="philosophy-grid">
-                <div class="philosophy-text">
-                    <h2>We design for presence.</h2>
-                    <p class="large-text">Every space we create is an invitation to pause. To feel the weight of stone, the warmth of wood, and the poetry of light moving across surfaces crafted with intention.</p>
-                    <div class="signature">— Serene Space Designs</div>
-                </div>
-                <div class="philosophy-image">
-                    <img src="https://picsum.photos/id/1016/1200/800" alt="Philosophy image" loading="lazy">
-                </div>
+    <!-- SECTION 2: PHILOSOPHY -->
+    <section class="philosophy" id="philosophy">
+        <div class="philosophy-container">
+            <div class="philosophy-content">
+                <h2 class="section-title">Philosophy</h2>
+                <p class="philosophy-text">
+                    We believe architecture breathes.<br>
+                    Spaces should feel like they think.
+                </p>
+            </div>
+            <div class="philosophy-image">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1000&h=600&fit=crop" alt="Minimalist interior design" loading="lazy">
             </div>
         </div>
     </section>
 
-    <!-- SERVICES -->
-    <section id="services" class="section services">
-        <div class="container">
-            <div class="section-header">
-                <span class="eyebrow">Our Practice</span>
-                <h2>Disciplines of Craft</h2>
-            </div>
+    <!-- SECTION 3: SERVICES (EDITORIAL LAYOUT) -->
+    <section class="services" id="services">
+        <div class="services-container">
+            <h2 class="section-title">Services</h2>
             
-            <div class="services-content">
-                <div class="service-item">
-                    <div class="service-visual">
-                        <img src="https://picsum.photos/id/133/800/600" alt="Architecture" loading="lazy">
-                    </div>
-                    <div class="service-info">
-                        <h3>Architecture</h3>
-                        <p>Monumental yet intimate structures rooted in context and light.</p>
-                    </div>
+            <div class="service-block service-1">
+                <div class="service-content">
+                    <h3 class="service-title">Architecture</h3>
+                    <p class="service-description">Buildings that breathe with purpose. Every line speaks. Every space listens.</p>
                 </div>
-                
-                <div class="service-item">
-                    <div class="service-visual">
-                        <img src="https://picsum.photos/id/201/800/600" alt="Interiors" loading="lazy">
-                    </div>
-                    <div class="service-info">
-                        <h3>Interiors</h3>
-                        <p>Layered environments where material honesty meets refined living.</p>
-                    </div>
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop" alt="Architecture service" loading="lazy">
                 </div>
-                
-                <div class="service-item">
-                    <div class="service-visual">
-                        <img src="https://picsum.photos/id/251/800/600" alt="Hospitality" loading="lazy">
-                    </div>
-                    <div class="service-info">
-                        <h3>Hospitality</h3>
-                        <p>Destinations that transcend expectation and invite return.</p>
-                    </div>
+            </div>
+
+            <div class="service-block service-2">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop" alt="Interior design service" loading="lazy">
+                </div>
+                <div class="service-content">
+                    <h3 class="service-title">Interior Design</h3>
+                    <p class="service-description">Spaces curated like exhibitions. Refined. Intentional. Timeless.</p>
+                </div>
+            </div>
+
+            <div class="service-block service-3">
+                <div class="service-content">
+                    <h3 class="service-title">Spatial Strategy</h3>
+                    <p class="service-description">Understanding how humans inhabit space. Design that serves experience.</p>
+                </div>
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop" alt="Spatial strategy service" loading="lazy">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FEATURED PROJECTS -->
-    <section id="projects" class="section projects">
-        <div class="container">
-            <div class="section-header">
-                <span class="eyebrow">Selected Works</span>
-                <h2>Monumental Moments</h2>
-            </div>
+    <!-- SECTION 4: FEATURED PROJECTS -->
+    <section class="projects" id="projects">
+        <div class="projects-container">
+            <h2 class="section-title">Featured Projects</h2>
             
-            <div class="projects-grid">
-                <a href="#" class="project-card">
-                    <div class="project-image">
-                        <img src="https://picsum.photos/id/1018/1200/800" alt="Villa Serene" loading="lazy">
-                    </div>
-                    <div class="project-overlay">
-                        <div class="project-meta">
-                            <span class="location">Tuscany, Italy • 2024</span>
-                            <h3>Villa Serene</h3>
-                        </div>
-                    </div>
-                </a>
-                
-                <a href="#" class="project-card">
-                    <div class="project-image">
-                        <img src="https://picsum.photos/id/133/1200/800" alt="The Atrium" loading="lazy">
-                    </div>
-                    <div class="project-overlay">
-                        <div class="project-meta">
-                            <span class="location">Aspen, Colorado • 2025</span>
-                            <h3>The Atrium Residence</h3>
-                        </div>
-                    </div>
-                </a>
-                
-                <a href="#" class="project-card">
-                    <div class="project-image">
-                        <img src="https://picsum.photos/id/201/1200/800" alt="Harbor House" loading="lazy">
-                    </div>
-                    <div class="project-overlay">
-                        <div class="project-meta">
-                            <span class="location">Marrakech, Morocco • 2023</span>
-                            <h3>Harbor House</h3>
-                        </div>
-                    </div>
-                </a>
-            </div>
+            <article class="project" id="project-1">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=700&fit=crop" alt="Riverside Residences" loading="lazy">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Riverside Residences</h3>
+                    <p class="project-description">A series of thoughtfully designed homes nestled in natural landscape. Stone, wood, and stillness.</p>
+                    <span class="project-type">Architecture + Interiors</span>
+                </div>
+            </article>
+
+            <article class="project" id="project-2">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=700&fit=crop" alt="The Sanctuary Wellness Center" loading="lazy">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">The Sanctuary Wellness Center</h3>
+                    <p class="project-description">A retreat designed for restoration. Light, material, and proportion create therapeutic space.</p>
+                    <span class="project-type">Architecture + Spatial Design</span>
+                </div>
+            </article>
+
+            <article class="project" id="project-3">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=700&fit=crop" alt="Meridian Studio Collective" loading="lazy">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Meridian Studio Collective</h3>
+                    <p class="project-description">Creative workspace that inspires collaboration. Minimalist structure, maximum intention.</p>
+                    <span class="project-type">Interiors + Spatial Strategy</span>
+                </div>
+            </article>
         </div>
     </section>
 
-    <!-- PROCESS -->
-    <section id="process" class="section process">
-        <div class="container">
-            <div class="process-content">
-                <div class="process-text">
-                    <h2>The Serene Process</h2>
-                    <p class="large-text">We begin with silence. Listening to the land, the client, the light. Then, through deliberate iteration and material exploration, we arrive at spaces that feel inevitable.</p>
-                </div>
-                
-                <div class="process-stages">
-                    <div class="stage">
-                        <div class="stage-number">01</div>
-                        <div class="stage-title">Discovery &amp; Dialogue</div>
-                    </div>
-                    <div class="stage">
-                        <div class="stage-number">02</div>
-                        <div class="stage-title">Vision &amp; Refinement</div>
-                    </div>
-                    <div class="stage">
-                        <div class="stage-number">03</div>
-                        <div class="stage-title">Craft &amp; Realization</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- MATERIALS -->
-    <section id="materials" class="section materials">
-        <div class="container">
-            <div class="section-header">
-                <span class="eyebrow">Tactile Palette</span>
-                <h2>Materials of Permanence</h2>
-            </div>
-            <div class="materials-grid">
-                <div class="material">
-                    <div class="material-visual" style="background-image: url('https://picsum.photos/id/251/600/400')"></div>
-                    <p class="material-name">Roman Travertine</p>
-                </div>
-                <div class="material">
-                    <div class="material-visual" style="background-image: url('https://picsum.photos/id/201/600/400')"></div>
-                    <p class="material-name">Aged Oak</p>
-                </div>
-                <div class="material">
-                    <div class="material-visual" style="background-image: url('https://picsum.photos/id/133/600/400')"></div>
-                    <p class="material-name">Linen &amp; Wool</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SOCIAL PROOF -->
-    <section id="journal" class="section journal">
-        <div class="container">
-            <div class="testimonial">
-                <p class="quote">"Serene Space transformed our vision into a sanctuary that continues to reveal new layers of beauty with every season."</p>
-                <div class="client">— Elena &amp; Marcus Rossi, Tuscany</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ENDING -->
-    <section class="section ending">
-        <div class="ending-content">
-            <h2 class="ending-title">The space between moments.</h2>
-            <p class="ending-subtitle">Let us craft yours.</p>
-            <button onclick="window.location.href='mailto:studio@serenespace.design'" class="cta-final">Start a Dialogue</button>
+    <!-- SECTION 5: PROCESS (CINEMATIC PROGRESSION) -->
+    <section class="process" id="process">
+        <div class="process-container">
+            <h2 class="section-title">Process</h2>
             
-            <div class="footer-info">
-                <p>Serene Space Designs © 2026</p>
-                <p>Studio in the Hudson Valley • Projects Worldwide</p>
+            <div class="process-stage" data-stage="1">
+                <div class="stage-number">01</div>
+                <h3 class="stage-title">Discovery</h3>
+                <p class="stage-text">We listen. We study light. We understand how humans inhabit space.</p>
+            </div>
+
+            <div class="process-stage" data-stage="2">
+                <div class="stage-number">02</div>
+                <h3 class="stage-title">Conceptualization</h3>
+                <p class="stage-text">Ideas emerge from silence. Sketches become philosophy. Philosophy becomes space.</p>
+            </div>
+
+            <div class="process-stage" data-stage="3">
+                <div class="stage-number">03</div>
+                <h3 class="stage-title">Refinement</h3>
+                <p class="stage-text">Every detail is questioned. Beauty emerges from restraint.</p>
+            </div>
+
+            <div class="process-stage" data-stage="4">
+                <div class="stage-number">04</div>
+                <h3 class="stage-title">Realization</h3>
+                <p class="stage-text">Vision becomes matter. Intention becomes experience.</p>
             </div>
         </div>
     </section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.0.42/lenis.min.js"></script>
+    <!-- SECTION 6: MATERIALS -->
+    <section class="materials" id="materials">
+        <div class="materials-container">
+            <h2 class="section-title">Materials + Craft</h2>
+            
+            <div class="material-grid">
+                <div class="material-item" data-material="travertine">
+                    <div class="material-swatch travertine-swatch"></div>
+                    <h3 class="material-name">Travertine</h3>
+                    <p class="material-note">Timeless. Breathes with light.</p>
+                </div>
+                <div class="material-item" data-material="oak">
+                    <div class="material-swatch oak-swatch"></div>
+                    <h3 class="material-name">European Oak</h3>
+                    <p class="material-note">Warm. Ages with grace.</p>
+                </div>
+                <div class="material-item" data-material="charcoal">
+                    <div class="material-swatch charcoal-swatch"></div>
+                    <h3 class="material-name">Matte Charcoal</h3>
+                    <p class="material-note">Subtle. Creates depth.</p>
+                </div>
+                <div class="material-item" data-material="stone">
+                    <div class="material-swatch stone-swatch"></div>
+                    <h3 class="material-name">Limestone</h3>
+                    <p class="material-note">Permanent. Holds silence.</p>
+                </div>
+            </div>
+
+            <div class="material-image">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1000&h=600&fit=crop" alt="Material details and textures" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: SOCIAL PROOF (QUIET ELEGANCE) -->
+    <section class="clients" id="clients">
+        <div class="clients-container">
+            <h2 class="section-title">Trusted By</h2>
+            
+            <div class="testimonials">
+                <blockquote class="testimonial" data-client="1">
+                    <p class="testimonial-text">"They understand that luxury is restraint."</p>
+                    <footer class="testimonial-author">— Architecture Digest</footer>
+                </blockquote>
+
+                <blockquote class="testimonial" data-client="2">
+                    <p class="testimonial-text">"Every project feels like it was inevitable."</p>
+                    <footer class="testimonial-author">— Wallpaper*</footer>
+                </blockquote>
+
+                <blockquote class="testimonial" data-client="3">
+                    <p class="testimonial-text">"Spaces that make you believe in peace again."</p>
+                    <footer class="testimonial-author">— Designboom</footer>
+                </blockquote>
+            </div>
+
+            <div class="client-logos">
+                <p class="client-logos-label">Featured In</p>
+                <div class="logos-container">
+                    <span class="logo">Architectural Record</span>
+                    <span class="logo">Dwell</span>
+                    <span class="logo">Surface Magazine</span>
+                    <span class="logo">The Spaces</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 8: CLOSING EXPERIENCE -->
+    <section class="closing" id="closing">
+        <div class="closing-container">
+            <h2 class="closing-title">Ready for Transcendent Space?</h2>
+            <p class="closing-subtitle">Let's create something that matters.</p>
+            
+            <div class="cta-block">
+                <a href="mailto:hello@serenespacedesigns.com" class="cta-button">Start Your Project</a>
+                <p class="cta-note">Or explore our full portfolio</p>
+            </div>
+
+            <footer class="footer">
+                <div class="footer-content">
+                    <p class="footer-text">Serene Space Designs © 2024</p>
+                    <p class="footer-text">Crafted for those who understand that architecture is a love language.</p>
+                </div>
+            </footer>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/darkroomengineering/lenis@latest/bundled/lenis.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
