@@ -1,4 +1,4 @@
-"/* ──────────────────────────────────────────────────────────────
+/* ──────────────────────────────────────────────────────────────
    SERENE SPACE DESIGNS — script.js
    Motion philosophy:
      · One major motion idea per section
@@ -496,6 +496,4 @@
   } else {
     start();
   }
-})();
-"
-Observation: Create successful: /app/static_export/script.js
+})()
