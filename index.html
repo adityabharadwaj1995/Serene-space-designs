@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serene Space Designs • Timeless Architecture & Interiors</title>
+    <meta name="description" content="Ultra-premium architecture and interior design studio crafting serene, monumental spaces.">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap');
+    </style>
+</head>
+<body>
+    <!-- NAV -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="#" class="logo">SERENE</a>
+            <div class="nav-links">
+                <a href="#philosophy">Philosophy</a>
+                <a href="#services">Services</a>
+                <a href="#projects">Projects</a>
+                <a href="#process">Process</a>
+                <a href="#materials">Materials</a>
+                <a href="#journal">Journal</a>
+            </div>
+            <button class="contact-btn">Begin Conversation</button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero" class="hero">
+        <div class="hero-bg">
+            <img src="https://picsum.photos/id/1015/2000/1200" alt="Serene interior space" class="hero-image">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Spaces that breathe.<br>Timeless by design.</h1>
+                <p class="hero-subtitle">Architecture and interiors of quiet monumentality.</p>
+                <button onclick="document.getElementById('philosophy').scrollIntoView({ behavior: 'smooth' })" class="explore-btn">Explore the Experience</button>
+            </div>
+        </div>
+        <div class="scroll-hint">
+            <span>Scroll to enter</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- PHILOSOPHY -->
+    <section id="philosophy" class="section philosophy">
+        <div class="container">
+            <div class="philosophy-grid">
+                <div class="philosophy-text">
+                    <h2>We design for presence.</h2>
+                    <p class="large-text">Every space we create is an invitation to pause. To feel the weight of stone, the warmth of wood, and the poetry of light moving across surfaces crafted with intention.</p>
+                    <div class="signature">— Serene Space Designs</div>
+                </div>
+                <div class="philosophy-image">
+                    <img src="https://picsum.photos/id/1016/1200/800" alt="Philosophy image" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section services">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow">Our Practice</span>
+                <h2>Disciplines of Craft</h2>
+            </div>
+            
+            <div class="services-content">
+                <div class="service-item">
+                    <div class="service-visual">
+                        <img src="https://picsum.photos/id/133/800/600" alt="Architecture" loading="lazy">
+                    </div>
+                    <div class="service-info">
+                        <h3>Architecture</h3>
+                        <p>Monumental yet intimate structures rooted in context and light.</p>
+                    </div>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-visual">
+                        <img src="https://picsum.photos/id/201/800/600" alt="Interiors" loading="lazy">
+                    </div>
+                    <div class="service-info">
+                        <h3>Interiors</h3>
+                        <p>Layered environments where material honesty meets refined living.</p>
+                    </div>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-visual">
+                        <img src="https://picsum.photos/id/251/800/600" alt="Hospitality" loading="lazy">
+                    </div>
+                    <div class="service-info">
+                        <h3>Hospitality</h3>
+                        <p>Destinations that transcend expectation and invite return.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED PROJECTS -->
+    <section id="projects" class="section projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow">Selected Works</span>
+                <h2>Monumental Moments</h2>
+            </div>
+            
+            <div class="projects-grid">
+                <a href="#" class="project-card">
+                    <div class="project-image">
+                        <img src="https://picsum.photos/id/1018/1200/800" alt="Villa Serene" loading="lazy">
+                    </div>
+                    <div class="project-overlay">
+                        <div class="project-meta">
+                            <span class="location">Tuscany, Italy • 2024</span>
+                            <h3>Villa Serene</h3>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="#" class="project-card">
+                    <div class="project-image">
+                        <img src="https://picsum.photos/id/133/1200/800" alt="The Atrium" loading="lazy">
+                    </div>
+                    <div class="project-overlay">
+                        <div class="project-meta">
+                            <span class="location">Aspen, Colorado • 2025</span>
+                            <h3>The Atrium Residence</h3>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="#" class="project-card">
+                    <div class="project-image">
+                        <img src="https://picsum.photos/id/201/1200/800" alt="Harbor House" loading="lazy">
+                    </div>
+                    <div class="project-overlay">
+                        <div class="project-meta">
+                            <span class="location">Marrakech, Morocco • 2023</span>
+                            <h3>Harbor House</h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process" class="section process">
+        <div class="container">
+            <div class="process-content">
+                <div class="process-text">
+                    <h2>The Serene Process</h2>
+                    <p class="large-text">We begin with silence. Listening to the land, the client, the light. Then, through deliberate iteration and material exploration, we arrive at spaces that feel inevitable.</p>
+                </div>
+                
+                <div class="process-stages">
+                    <div class="stage">
+                        <div class="stage-number">01</div>
+                        <div class="stage-title">Discovery &amp; Dialogue</div>
+                    </div>
+                    <div class="stage">
+                        <div class="stage-number">02</div>
+                        <div class="stage-title">Vision &amp; Refinement</div>
+                    </div>
+                    <div class="stage">
+                        <div class="stage-number">03</div>
+                        <div class="stage-title">Craft &amp; Realization</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MATERIALS -->
+    <section id="materials" class="section materials">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow">Tactile Palette</span>
+                <h2>Materials of Permanence</h2>
+            </div>
+            <div class="materials-grid">
+                <div class="material">
+                    <div class="material-visual" style="background-image: url('https://picsum.photos/id/251/600/400')"></div>
+                    <p class="material-name">Roman Travertine</p>
+                </div>
+                <div class="material">
+                    <div class="material-visual" style="background-image: url('https://picsum.photos/id/201/600/400')"></div>
+                    <p class="material-name">Aged Oak</p>
+                </div>
+                <div class="material">
+                    <div class="material-visual" style="background-image: url('https://picsum.photos/id/133/600/400')"></div>
+                    <p class="material-name">Linen &amp; Wool</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL PROOF -->
+    <section id="journal" class="section journal">
+        <div class="container">
+            <div class="testimonial">
+                <p class="quote">"Serene Space transformed our vision into a sanctuary that continues to reveal new layers of beauty with every season."</p>
+                <div class="client">— Elena &amp; Marcus Rossi, Tuscany</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENDING -->
+    <section class="section ending">
+        <div class="ending-content">
+            <h2 class="ending-title">The space between moments.</h2>
+            <p class="ending-subtitle">Let us craft yours.</p>
+            <button onclick="window.location.href='mailto:studio@serenespace.design'" class="cta-final">Start a Dialogue</button>
+            
+            <div class="footer-info">
+                <p>Serene Space Designs © 2026</p>
+                <p>Studio in the Hudson Valley • Projects Worldwide</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.0.42/lenis.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
