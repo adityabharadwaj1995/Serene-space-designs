@@ -1,631 +1,1898 @@
-<!doctype html>
-<html lang=\"en\">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset=\"utf-8\" />
-  <meta name=\"viewport\" content=\"width=device-width,initial-scale=1,viewport-fit=cover\" />
-  <meta name=\"theme-color\" content=\"#efeae1\" />
-  <meta name=\"color-scheme\" content=\"light\" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Haus® — Interior Design Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --warm-white: #faf8f4;
+    --dark: #1a1714;
+    --dark-2: #2c2823;
+    --mid: #6b6158;
+    --accent: #c8a97e;
+    --accent-dark: #a8845a;
+    --border: rgba(26,23,20,0.1);
+    --border-light: rgba(255,255,255,0.12);
+    --radius: 20px;
+    --radius-sm: 12px;
+  }
 
-  <title>Serene Space Designs — Architecture &amp; Interiors</title>
-  <meta name=\"description\" content=\"Serene Space Designs is an atelier for quiet residential architecture and tactile interiors. Milano · Como · Lake of Lugano.\" />
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <!-- Preconnect -->
-  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\" />
-  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin />
-  <link rel=\"preconnect\" href=\"https://images.unsplash.com\" />
+  html { scroll-behavior: smooth; font-size: 16px; }
 
-  <!-- Typography: Fraunces (editorial serif) + Geist (restrained sans) + JetBrains Mono (technical) -->
-  <link
-    href=\"https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300;9..144,400;9..144,500;9..144,600&family=Geist:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap\"
-    rel=\"stylesheet\"
-  />
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--dark);
+    overflow-x: hidden;
+    cursor: none;
+  }
 
-  <link rel=\"stylesheet\" href=\"style.css\" />
+  /* ─── Custom cursor ─────────────────────────────── */
+  #cursor {
+    width: 12px; height: 12px;
+    background: var(--dark);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%,-50%);
+    transition: width .25s, height .25s, background .25s;
+    mix-blend-mode: multiply;
+  }
+  #cursor-ring {
+    width: 40px; height: 40px;
+    border: 1.5px solid var(--dark);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9998;
+    transform: translate(-50%,-50%);
+    transition: transform .1s, width .3s, height .3s;
+    opacity: .4;
+  }
+  body.cursor-hover #cursor { width: 20px; height: 20px; background: var(--accent); }
+  body.cursor-hover #cursor-ring { width: 60px; height: 60px; opacity: .2; }
+
+  /* ─── Announcement bar ──────────────────────────── */
+  .announce-bar {
+    background: var(--dark);
+    color: var(--accent);
+    font-size: 11px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    padding: 10px 0;
+    overflow: hidden;
+    position: relative;
+    z-index: 100;
+  }
+  .announce-track {
+    display: flex; gap: 80px;
+    white-space: nowrap;
+    animation: marquee 20s linear infinite;
+  }
+  .announce-track span { flex-shrink: 0; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ─── Nav ───────────────────────────────────────── */
+  nav {
+    position: sticky; top: 0; z-index: 200;
+    background: rgba(250,248,244,.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+    transition: box-shadow .3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 32px rgba(26,23,20,.08); }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 600;
+    letter-spacing: -.01em;
+    color: var(--dark);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links {
+    display: flex; gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 13px; font-weight: 400;
+    letter-spacing: .04em;
+    text-decoration: none;
+    color: var(--mid);
+    transition: color .2s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute;
+    bottom: -2px; left: 0; right: 0; height: 1px;
+    background: var(--dark); transform: scaleX(0);
+    transition: transform .3s;
+  }
+  .nav-links a:hover { color: var(--dark); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-cta {
+    background: var(--dark); color: var(--cream);
+    padding: 10px 22px;
+    border-radius: 100px;
+    font-size: 12px; font-weight: 500;
+    text-decoration: none;
+    letter-spacing: .06em;
+    transition: background .25s, transform .2s;
+  }
+  .nav-cta:hover { background: var(--accent-dark); transform: scale(1.03); }
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; padding: 4px;
+  }
+  .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--dark); transition: .3s; }
+  .mobile-menu {
+    display: none;
+    position: fixed; inset: 0; z-index: 300;
+    background: var(--dark);
+    flex-direction: column;
+    justify-content: center; align-items: center;
+    gap: 40px;
+    opacity: 0; pointer-events: none;
+    transition: opacity .4s;
+  }
+  .mobile-menu.open { opacity: 1; pointer-events: all; }
+  .mobile-menu a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px; font-weight: 300;
+    color: var(--cream);
+    text-decoration: none;
+    letter-spacing: -.01em;
+    transition: color .2s;
+  }
+  .mobile-menu a:hover { color: var(--accent); }
+  .mobile-close {
+    position: absolute; top: 20px; right: 24px;
+    font-size: 28px; color: var(--cream);
+    cursor: pointer; line-height: 1;
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .mobile-menu { display: flex; }
+  }
+
+  /* ─── Hero ──────────────────────────────────────── */
+  .hero {
+    min-height: 95vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding: 80px 60px 80px 60px;
+    position: relative; z-index: 2;
+  }
+  .hero-label {
+    font-size: 11px; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 32px;
+    opacity: 0; animation: fadeUp .8s .3s forwards;
+  }
+  .hero-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(44px, 6vw, 78px);
+    font-weight: 300; line-height: 1.05;
+    letter-spacing: -.02em;
+    color: var(--dark);
+    margin-bottom: 32px;
+    opacity: 0; animation: fadeUp .9s .5s forwards;
+  }
+  .hero-heading em { font-style: italic; color: var(--accent-dark); }
+  .hero-sub {
+    font-size: 15px; line-height: 1.7;
+    color: var(--mid); max-width: 400px;
+    margin-bottom: 48px;
+    opacity: 0; animation: fadeUp .9s .7s forwards;
+  }
+  .hero-actions {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp .9s .9s forwards;
+  }
+  .btn-primary {
+    background: var(--dark); color: var(--cream);
+    padding: 14px 28px;
+    border-radius: 100px;
+    font-size: 13px; font-weight: 500;
+    text-decoration: none;
+    letter-spacing: .04em;
+    transition: background .25s, transform .2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); }
+  .btn-secondary {
+    background: transparent; color: var(--dark);
+    padding: 14px 28px;
+    border-radius: 100px;
+    border: 1.5px solid rgba(26,23,20,.25);
+    font-size: 13px; font-weight: 400;
+    text-decoration: none;
+    letter-spacing: .04em;
+    transition: border-color .25s, transform .2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-secondary:hover { border-color: var(--dark); transform: translateY(-2px); }
+  .hero-right {
+    position: relative; overflow: hidden;
+  }
+  .hero-img {
+    width: 100%; height: 100%; object-fit: cover;
+    transform: scale(1.05);
+    animation: heroImgIn 1.8s .2s cubic-bezier(.16,1,.3,1) forwards;
+    filter: brightness(.92);
+  }
+  .hero-badge {
+    position: absolute; bottom: 40px; left: 40px;
+    background: rgba(250,248,244,.92);
+    backdrop-filter: blur(12px);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    opacity: 0; animation: fadeUp .8s 1.1s forwards;
+  }
+  .hero-badge .badge-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px; line-height: 1.5;
+    color: var(--dark); margin-bottom: 12px;
+  }
+  .badge-meta { display: flex; align-items: center; gap: 10px; }
+  .badge-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    object-fit: cover;
+  }
+  .badge-name { font-size: 12px; font-weight: 500; color: var(--dark); }
+  .badge-role { font-size: 11px; color: var(--mid); }
+  .hero-scroll {
+    position: absolute; bottom: 40px; right: 40px;
+    display: flex; align-items: center; gap: 12px;
+    font-size: 11px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--mid);
+    opacity: 0; animation: fadeUp .8s 1.3s forwards;
+    writing-mode: vertical-rl;
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, transparent, var(--mid));
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse { 0%,100%{ opacity:.4 } 50%{ opacity:1 } }
+
+  @keyframes fadeUp {
+    from { opacity:0; transform: translateY(24px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+  @keyframes heroImgIn {
+    from { transform: scale(1.1); }
+    to   { transform: scale(1); }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+    .hero-right { height: 55vw; order: -1; }
+    .hero-left { padding: 40px 24px 60px; }
+    .hero-scroll { display: none; }
+    .hero-badge { left: 16px; bottom: 16px; right: 16px; }
+  }
+
+  /* ─── Marquee strip ──────────────────────────────── */
+  .strip {
+    background: var(--dark);
+    overflow: hidden; padding: 18px 0;
+  }
+  .strip-track {
+    display: flex; gap: 60px;
+    white-space: nowrap;
+    animation: marquee 25s linear infinite;
+  }
+  .strip-item {
+    flex-shrink: 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 300;
+    font-style: italic; color: var(--accent);
+    letter-spacing: .04em;
+  }
+  .strip-dot { color: rgba(200,169,126,.3); }
+
+  /* ─── Sections ──────────────────────────────────── */
+  section { padding: 120px 60px; }
+  @media (max-width: 768px) { section { padding: 80px 24px; } }
+
+  .section-label {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 11px; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 28px;
+  }
+  .section-label::before {
+    content: ''; display: block;
+    width: 24px; height: 1px; background: var(--accent);
+  }
+
+  /* ─── About ─────────────────────────────────────── */
+  .about { background: var(--warm-white); }
+  .about-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: start;
+  }
+  .about-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 300; line-height: 1.15;
+    letter-spacing: -.02em; color: var(--dark);
+  }
+  .about-heading em { font-style: italic; color: var(--accent-dark); }
+  .about-right { display: flex; flex-direction: column; gap: 28px; }
+  .about-text { font-size: 15px; line-height: 1.8; color: var(--mid); }
+  .about-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 500;
+    color: var(--dark); text-decoration: none;
+    border-bottom: 1.5px solid var(--dark);
+    padding-bottom: 2px;
+    transition: gap .2s, color .2s;
+  }
+  .about-link:hover { gap: 14px; color: var(--accent-dark); border-color: var(--accent-dark); }
+
+  .about-testimonial {
+    grid-column: 1 / -1;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 40px; align-items: center;
+    margin-top: 40px;
+    background: var(--cream);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .test-text {
+    padding: 56px;
+  }
+  .test-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 2.5vw, 28px);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--dark);
+    margin-bottom: 28px;
+  }
+  .test-person { display: flex; align-items: center; gap: 14px; }
+  .test-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+  .test-name { font-size: 14px; font-weight: 500; color: var(--dark); }
+  .test-role { font-size: 12px; color: var(--mid); }
+  .test-img { height: 380px; overflow: hidden; }
+  .test-img img { width: 100%; height: 100%; object-fit: cover; }
+
+  @media (max-width: 900px) {
+    .about-inner { grid-template-columns: 1fr; gap: 40px; }
+    .about-testimonial { grid-template-columns: 1fr; }
+    .test-img { height: 260px; }
+    .test-text { padding: 36px 28px; }
+    .about-testimonial { grid-column: 1; }
+  }
+
+  /* ─── Benefits ──────────────────────────────────── */
+  .benefits { background: var(--cream); }
+  .benefits-intro {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; margin-bottom: 72px;
+    align-items: end;
+  }
+  .benefits-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 3.5vw, 46px);
+    font-weight: 300; line-height: 1.15;
+    letter-spacing: -.02em; color: var(--dark);
+  }
+  .benefits-sub { font-size: 15px; line-height: 1.8; color: var(--mid); }
+  .benefits-grid {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 24px;
+  }
+  .benefit-card {
+    background: var(--warm-white);
+    border-radius: var(--radius);
+    padding: 36px;
+    transition: transform .3s, box-shadow .3s;
+    position: relative; overflow: hidden;
+  }
+  .benefit-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    opacity: 0; transition: opacity .3s;
+  }
+  .benefit-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(26,23,20,.08); }
+  .benefit-card:hover::before { opacity: 1; }
+  .benefit-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: var(--dark);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+    font-size: 20px;
+  }
+  .benefit-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px; font-weight: 300;
+    color: var(--accent); line-height: 1;
+    margin-bottom: 8px;
+  }
+  .benefit-title { font-size: 16px; font-weight: 500; color: var(--dark); margin-bottom: 8px; }
+  .benefit-desc { font-size: 14px; line-height: 1.7; color: var(--mid); }
+
+  .notification-card {
+    background: var(--dark);
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    display: flex; align-items: center; gap: 12px;
+    margin-top: 16px; max-width: 260px;
+    animation: slideIn .5s ease-out;
+  }
+  .notif-dot { width: 8px; height: 8px; border-radius: 50%; background: #4CAF50; flex-shrink: 0; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+  .notif-text { font-size: 12px; color: rgba(245,240,232,.7); line-height: 1.4; }
+  .notif-text strong { color: var(--cream); display: block; }
+
+  @media (max-width: 900px) {
+    .benefits-intro { grid-template-columns: 1fr; gap: 24px; }
+    .benefits-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .benefits-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ─── Work / Case Studies ────────────────────────── */
+  .work { background: var(--warm-white); }
+  .work-header {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; margin-bottom: 64px; align-items: end;
+  }
+  .work-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 3.5vw, 46px);
+    font-weight: 300; line-height: 1.15;
+    letter-spacing: -.02em; color: var(--dark);
+  }
+  .work-right { display: flex; flex-direction: column; gap: 20px; align-items: flex-end; }
+  .work-desc { font-size: 15px; line-height: 1.8; color: var(--mid); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px;
+  }
+  .project-card {
+    border-radius: var(--radius);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    background: var(--cream);
+  }
+  .project-card:first-child { grid-row: span 2; }
+  .project-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform .6s cubic-bezier(.16,1,.3,1);
+    display: block;
+  }
+  .project-card:first-child .project-img { height: 600px; }
+  .project-card:not(:first-child) .project-img { height: 290px; }
+  .project-card:hover .project-img { transform: scale(1.04); }
+  .project-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(26,23,20,.7) 0%, transparent 60%);
+    opacity: 0; transition: opacity .4s;
+  }
+  .project-card:hover .project-overlay { opacity: 1; }
+  .project-info {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 28px;
+    transform: translateY(8px); opacity: 0;
+    transition: transform .4s, opacity .4s;
+  }
+  .project-card:hover .project-info { transform: translateY(0); opacity: 1; }
+  .project-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .project-tag {
+    font-size: 10px; letter-spacing: .1em;
+    text-transform: uppercase;
+    background: rgba(200,169,126,.3);
+    color: var(--accent);
+    border: 1px solid rgba(200,169,126,.4);
+    border-radius: 100px; padding: 4px 10px;
+  }
+  .project-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 400;
+    color: var(--cream); margin-bottom: 4px;
+  }
+  .project-desc { font-size: 13px; color: rgba(245,240,232,.7); }
+
+  @media (max-width: 768px) {
+    .work-header { grid-template-columns: 1fr; gap: 24px; }
+    .work-right { align-items: flex-start; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card:first-child { grid-row: span 1; }
+    .project-card:first-child .project-img { height: 300px; }
+    .project-card:not(:first-child) .project-img { height: 260px; }
+    .project-info { opacity: 1; transform: none; }
+    .project-overlay { opacity: 1; }
+  }
+
+  /* ─── Methodology ─────────────────────────────────── */
+  .methodology { background: var(--dark); color: var(--cream); }
+  .method-header {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; margin-bottom: 72px; align-items: end;
+  }
+  .method-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 3.5vw, 46px);
+    font-weight: 300; line-height: 1.15;
+    letter-spacing: -.02em; color: var(--cream);
+  }
+  .method-right { display: flex; flex-direction: column; gap: 28px; }
+  .method-desc { font-size: 15px; line-height: 1.8; color: rgba(245,240,232,.6); }
+  .method-links { display: flex; gap: 16px; flex-wrap: wrap; }
+  .method-link {
+    font-size: 13px; color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(200,169,126,.3);
+    padding-bottom: 2px;
+    transition: border-color .2s;
+  }
+  .method-link:hover { border-color: var(--accent); }
+  .steps-grid {
+    display: grid; grid-template-columns: repeat(4,1fr);
+    gap: 2px;
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .step {
+    background: rgba(255,255,255,.04);
+    padding: 40px 28px;
+    border-right: 1px solid rgba(255,255,255,.06);
+    transition: background .3s;
+  }
+  .step:last-child { border-right: none; }
+  .step:hover { background: rgba(200,169,126,.07); }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px; font-weight: 300;
+    color: rgba(200,169,126,.25);
+    margin-bottom: 20px;
+  }
+  .step-title { font-size: 16px; font-weight: 500; color: var(--cream); margin-bottom: 12px; }
+  .step-desc { font-size: 13px; line-height: 1.8; color: rgba(245,240,232,.5); }
+
+  @media (max-width: 900px) {
+    .method-header { grid-template-columns: 1fr; gap: 24px; }
+    .steps-grid { grid-template-columns: 1fr 1fr; }
+    .step { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); }
+  }
+  @media (max-width: 560px) {
+    .steps-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ─── Services ──────────────────────────────────── */
+  .services { background: var(--warm-white); }
+  .services-layout {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: start;
+  }
+  .services-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 3.5vw, 46px);
+    font-weight: 300; line-height: 1.15;
+    letter-spacing: -.02em; color: var(--dark);
+    margin-bottom: 28px;
+  }
+  .services-sub { font-size: 15px; line-height: 1.8; color: var(--mid); margin-bottom: 40px; }
+  .expertise-label { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--mid); margin-bottom: 14px; }
+  .tag-cloud { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
+  .tag {
+    font-size: 12px;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 6px 14px; color: var(--mid);
+    transition: background .2s, color .2s;
+    cursor: default;
+  }
+  .tag:hover { background: var(--dark); color: var(--cream); border-color: var(--dark); }
+  .featured-label { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--mid); margin-bottom: 14px; }
+  .press-list { display: flex; gap: 8px; flex-wrap: wrap; }
+  .press-item {
+    font-size: 12px; color: var(--mid);
+    background: var(--cream);
+    border-radius: 100px;
+    padding: 5px 12px;
+  }
+  .services-right {
+    position: sticky; top: 100px;
+  }
+  .showreel-card {
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--dark);
+    aspect-ratio: 4/3;
+    position: relative;
+    cursor: pointer;
+  }
+  .showreel-img { width: 100%; height: 100%; object-fit: cover; opacity: .6; transition: opacity .3s; }
+  .showreel-card:hover .showreel-img { opacity: .4; }
+  .showreel-play {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 16px;
+  }
+  .play-btn {
+    width: 72px; height: 72px;
+    border: 2px solid rgba(245,240,232,.4);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform .3s, border-color .3s;
+  }
+  .showreel-card:hover .play-btn { transform: scale(1.1); border-color: var(--accent); }
+  .play-arrow {
+    width: 0; height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 16px solid var(--cream);
+    margin-left: 4px;
+  }
+  .showreel-text { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: rgba(245,240,232,.6); }
+
+  @media (max-width: 900px) {
+    .services-layout { grid-template-columns: 1fr; gap: 48px; }
+    .services-right { position: relative; top: 0; }
+  }
+
+  /* ─── Testimonials ─────────────────────────────── */
+  .testimonials { background: var(--cream); }
+  .test-header {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; margin-bottom: 64px; align-items: end;
+  }
+  .test-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 3.5vw, 46px);
+    font-weight: 300; line-height: 1.15;
+    letter-spacing: -.02em; color: var(--dark);
+  }
+  .test-meta { display: flex; flex-direction: column; gap: 12px; align-items: flex-end; }
+  .rating-badge {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--dark); border-radius: 100px;
+    padding: 10px 20px;
+  }
+  .rating-stars { color: var(--accent); font-size: 14px; letter-spacing: 2px; }
+  .rating-num { font-size: 13px; color: var(--cream); }
+  .rating-sub { font-size: 12px; color: var(--mid); }
+
+  .photos-strip {
+    display: flex; gap: 12px; height: 300px;
+    overflow: hidden; margin-bottom: 64px;
+    border-radius: var(--radius);
+  }
+  .photos-strip img {
+    flex: 1; min-width: 0;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    transition: flex .4s cubic-bezier(.16,1,.3,1);
+    filter: saturate(.8);
+  }
+  .photos-strip img:hover { flex: 2.5; filter: saturate(1); }
+
+  .testimonial-slider { position: relative; }
+  .testimonial-card {
+    background: var(--warm-white);
+    border-radius: var(--radius);
+    padding: 48px;
+    display: none;
+  }
+  .testimonial-card.active { display: block; animation: fadeIn .5s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .t-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 2.5vw, 30px);
+    font-style: italic; font-weight: 300;
+    line-height: 1.5; color: var(--dark);
+    margin-bottom: 32px;
+  }
+  .t-person { display: flex; align-items: center; gap: 16px; }
+  .t-avatar { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; }
+  .t-name { font-size: 15px; font-weight: 500; color: var(--dark); }
+  .t-role { font-size: 13px; color: var(--mid); }
+  .t-controls {
+    display: flex; gap: 12px; margin-top: 32px; align-items: center;
+  }
+  .t-btn {
+    width: 44px; height: 44px; border-radius: 50%;
+    border: 1.5px solid var(--border);
+    background: transparent; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: var(--mid);
+    transition: background .2s, color .2s, border-color .2s;
+  }
+  .t-btn:hover { background: var(--dark); color: var(--cream); border-color: var(--dark); }
+  .t-counter { font-size: 13px; color: var(--mid); margin-left: 4px; }
+
+  .stats-bar {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 2px; margin-top: 64px;
+    background: var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .stat {
+    background: var(--warm-white);
+    padding: 36px 28px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px; font-weight: 300;
+    color: var(--dark); letter-spacing: -.03em;
+    line-height: 1; margin-bottom: 8px;
+  }
+  .stat-num span { color: var(--accent); }
+  .stat-label { font-size: 13px; color: var(--mid); line-height: 1.5; }
+
+  @media (max-width: 900px) {
+    .test-header { grid-template-columns: 1fr; gap: 24px; }
+    .test-meta { align-items: flex-start; }
+    .photos-strip { height: 200px; }
+    .stats-bar { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .testimonial-card { padding: 28px; }
+    .photos-strip { display: grid; grid-template-columns: 1fr 1fr; height: auto; }
+    .photos-strip img { flex: none; height: 140px; }
+    .photos-strip img:hover { flex: none; }
+  }
+
+  /* ─── Pricing ───────────────────────────────────── */
+  .pricing { background: var(--dark); }
+  .pricing-header { text-align: center; margin-bottom: 64px; }
+  .pricing-label { color: var(--accent); }
+  .pricing-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(34px, 5vw, 60px);
+    font-weight: 300; line-height: 1.1;
+    letter-spacing: -.02em; color: var(--cream);
+    margin-bottom: 16px;
+  }
+  .pricing-sub { font-size: 15px; color: rgba(245,240,232,.5); max-width: 480px; margin: 0 auto; line-height: 1.7; }
+  .pricing-cards {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 20px; max-width: 1100px; margin: 0 auto;
+  }
+  .price-card {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: var(--radius);
+    padding: 40px;
+    transition: transform .3s, border-color .3s;
+    position: relative;
+  }
+  .price-card.featured {
+    background: rgba(200,169,126,.12);
+    border-color: rgba(200,169,126,.3);
+  }
+  .price-card:hover { transform: translateY(-6px); border-color: rgba(200,169,126,.3); }
+  .price-badge {
+    position: absolute; top: 20px; right: 20px;
+    background: var(--accent);
+    color: var(--dark); font-size: 10px;
+    letter-spacing: .1em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 100px;
+    font-weight: 600;
+  }
+  .price-tier { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: rgba(200,169,126,.7); margin-bottom: 10px; }
+  .price-tagline { font-size: 14px; color: rgba(245,240,232,.5); margin-bottom: 32px; line-height: 1.5; }
+  .price-amount {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--cream); margin-bottom: 8px;
+    line-height: 1;
+  }
+  .price-currency { font-size: 24px; font-weight: 300; vertical-align: top; margin-top: 8px; display: inline-block; }
+  .price-num { font-size: 64px; font-weight: 300; letter-spacing: -.04em; }
+  .price-period { font-size: 16px; color: rgba(245,240,232,.4); }
+  .price-cta {
+    display: block; text-align: center;
+    background: rgba(255,255,255,.08);
+    color: var(--cream); border-radius: 100px;
+    padding: 13px; font-size: 13px; font-weight: 500;
+    text-decoration: none; letter-spacing: .04em;
+    margin: 28px 0;
+    transition: background .2s;
+  }
+  .price-card.featured .price-cta { background: var(--accent); color: var(--dark); }
+  .price-cta:hover { background: var(--accent); color: var(--dark); }
+  .price-features { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .price-features li {
+    font-size: 13px; color: rgba(245,240,232,.6);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .price-features li::before {
+    content: '✓'; color: var(--accent); font-size: 12px; flex-shrink: 0;
+  }
+
+  @media (max-width: 900px) { .pricing-cards { grid-template-columns: 1fr; max-width: 480px; } }
+
+  /* ─── FAQ ───────────────────────────────────────── */
+  .faq { background: var(--warm-white); }
+  .faq-layout {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: start;
+  }
+  .faq-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 3.5vw, 46px);
+    font-weight: 300; line-height: 1.15;
+    letter-spacing: -.02em; color: var(--dark);
+    margin-bottom: 32px;
+  }
+  .faq-person { background: var(--cream); border-radius: var(--radius); padding: 28px; }
+  .faq-person-img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; margin-bottom: 14px; }
+  .faq-person-name { font-size: 14px; font-weight: 500; color: var(--dark); }
+  .faq-person-role { font-size: 12px; color: var(--mid); margin-bottom: 16px; }
+  .faq-person-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; color: var(--dark);
+    text-decoration: none; font-weight: 500;
+    border-bottom: 1.5px solid var(--dark);
+    padding-bottom: 2px;
+  }
+  .accordion { display: flex; flex-direction: column; gap: 2px; }
+  .acc-item {
+    background: var(--cream);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    transition: background .2s;
+  }
+  .acc-item.open { background: var(--cream); }
+  .acc-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 24px; cursor: pointer;
+    gap: 12px;
+  }
+  .acc-question { font-size: 15px; font-weight: 500; color: var(--dark); line-height: 1.4; }
+  .acc-icon {
+    width: 28px; height: 28px; flex-shrink: 0;
+    border: 1.5px solid var(--border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; color: var(--mid);
+    transition: transform .3s, background .2s;
+  }
+  .acc-item.open .acc-icon { transform: rotate(45deg); background: var(--dark); color: var(--cream); border-color: var(--dark); }
+  .acc-body {
+    max-height: 0; overflow: hidden;
+    transition: max-height .4s cubic-bezier(.16,1,.3,1), padding .3s;
+  }
+  .acc-body p { padding: 0 24px 22px; font-size: 14px; line-height: 1.8; color: var(--mid); }
+  .acc-item.open .acc-body { max-height: 300px; }
+
+  @media (max-width: 900px) {
+    .faq-layout { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  /* ─── Blog / Insights ─────────────────────────────── */
+  .insights { background: var(--cream); }
+  .insights-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 48px; gap: 24px; flex-wrap: wrap;
+  }
+  .insights-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3vw, 42px);
+    font-weight: 300; line-height: 1.15;
+    letter-spacing: -.02em; color: var(--dark);
+    max-width: 520px;
+  }
+  .insights-grid {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+  }
+  .article-card {
+    background: var(--warm-white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    text-decoration: none;
+    display: block;
+    transition: transform .3s, box-shadow .3s;
+  }
+  .article-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(26,23,20,.08); }
+  .article-img { height: 220px; overflow: hidden; }
+  .article-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+  .article-card:hover .article-img img { transform: scale(1.04); }
+  .article-body { padding: 28px; }
+  .article-cat { font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+  .article-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: var(--dark); line-height: 1.3; margin-bottom: 12px; }
+  .article-date { font-size: 12px; color: var(--mid); }
+
+  @media (max-width: 900px) { .insights-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .insights-grid { grid-template-columns: 1fr; } }
+
+  /* ─── Contact ───────────────────────────────────── */
+  .contact { background: var(--warm-white); }
+  .contact-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: start;
+  }
+  .contact-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3.5vw, 46px);
+    font-weight: 300; line-height: 1.15;
+    letter-spacing: -.02em; color: var(--dark);
+    margin-bottom: 20px;
+  }
+  .contact-sub { font-size: 15px; line-height: 1.8; color: var(--mid); margin-bottom: 40px; }
+  .form { display: flex; flex-direction: column; gap: 16px; }
+  .form-field {
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .form-field label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--mid); }
+  .form-field input, .form-field textarea {
+    background: var(--cream);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; color: var(--dark);
+    outline: none;
+    transition: border-color .2s;
+    resize: none;
+  }
+  .form-field input:focus, .form-field textarea:focus { border-color: var(--accent); }
+  .form-submit {
+    background: var(--dark); color: var(--cream);
+    border: none; border-radius: 100px;
+    padding: 16px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 500; letter-spacing: .06em;
+    cursor: pointer;
+    transition: background .25s, transform .2s;
+    display: inline-flex; align-items: center; gap: 10px;
+    align-self: flex-start;
+  }
+  .form-submit:hover { background: var(--accent-dark); transform: translateY(-2px); }
+  .contact-right { position: sticky; top: 100px; }
+  .contact-img { border-radius: var(--radius); overflow: hidden; height: 460px; margin-bottom: 24px; }
+  .contact-img img { width: 100%; height: 100%; object-fit: cover; }
+  .contact-info { display: flex; flex-direction: column; gap: 14px; }
+  .contact-info-item { display: flex; align-items: center; gap: 12px; }
+  .info-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+  .info-label { font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--mid); }
+  .info-val { font-size: 14px; color: var(--dark); font-weight: 500; }
+
+  @media (max-width: 900px) {
+    .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+    .contact-right { position: relative; top: 0; }
+    .contact-img { height: 280px; }
+  }
+
+  /* ─── Footer ─────────────────────────────────────── */
+  footer { background: var(--dark); }
+  .footer-top {
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 48px; padding: 80px 60px 60px;
+    border-bottom: 1px solid rgba(255,255,255,.07);
+  }
+  .footer-brand .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 600;
+    color: var(--cream); letter-spacing: -.01em;
+    text-decoration: none;
+    display: block; margin-bottom: 16px;
+  }
+  .footer-logo span { color: var(--accent); }
+  .footer-tagline { font-size: 14px; line-height: 1.7; color: rgba(245,240,232,.45); margin-bottom: 32px; }
+  .newsletter-label { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .newsletter-form { display: flex; gap: 8px; }
+  .newsletter-input {
+    flex: 1; background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 100px;
+    padding: 11px 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; color: var(--cream); outline: none;
+    transition: border-color .2s;
+  }
+  .newsletter-input::placeholder { color: rgba(245,240,232,.3); }
+  .newsletter-input:focus { border-color: rgba(200,169,126,.5); }
+  .newsletter-btn {
+    background: var(--accent); color: var(--dark);
+    border: none; border-radius: 100px;
+    padding: 11px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px; font-weight: 600; cursor: pointer;
+    transition: background .2s;
+  }
+  .newsletter-btn:hover { background: var(--accent-dark); }
+  .footer-col h4 {
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: rgba(245,240,232,.4); margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a {
+    font-size: 14px; color: rgba(245,240,232,.6);
+    text-decoration: none; transition: color .2s;
+  }
+  .footer-col ul a:hover { color: var(--cream); }
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px 60px; flex-wrap: wrap; gap: 12px;
+  }
+  .footer-copy { font-size: 12px; color: rgba(245,240,232,.3); }
+  .footer-socials { display: flex; gap: 16px; }
+  .social-link {
+    font-size: 12px; color: rgba(245,240,232,.4);
+    text-decoration: none; transition: color .2s;
+  }
+  .social-link:hover { color: var(--accent); }
+
+  @media (max-width: 900px) {
+    .footer-top { grid-template-columns: 1fr 1fr; padding: 60px 24px 48px; }
+    .footer-brand { grid-column: 1 / -1; }
+    .footer-bottom { padding: 20px 24px; }
+  }
+  @media (max-width: 560px) {
+    .footer-top { grid-template-columns: 1fr; }
+  }
+
+  /* ─── Scroll-reveal ──────────────────────────────── */
+  .reveal {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: .1s; }
+  .reveal-delay-2 { transition-delay: .2s; }
+  .reveal-delay-3 { transition-delay: .3s; }
+  .reveal-delay-4 { transition-delay: .4s; }
+
+  /* ─── Parallax image wrapper ─────────────────────── */
+  .parallax-wrap { overflow: hidden; border-radius: var(--radius); }
+  .parallax-img { will-change: transform; }
+
+  /* ─── Progress bar ───────────────────────────────── */
+  #progress {
+    position: fixed; top: 0; left: 0; z-index: 9997;
+    height: 2px; background: var(--accent);
+    width: 0%; transition: width .1s;
+  }
+</style>
 </head>
 <body>
 
-  <!-- ────────────────────────────────────────────────
-       LOADER — Slow, intentional, never rushed.
-       ──────────────────────────────────────────────── -->
-  <div class=\"loader\" data-loader aria-hidden=\"true\">
-    <div class=\"loader__inner\">
-      <span class=\"loader__label\" data-loader-label>Serene Space Designs</span>
-      <span class=\"loader__count\"><span data-loader-count>0</span><i>%</i></span>
-      <span class=\"loader__line\"><i data-loader-line></i></span>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<div id="progress"></div>
+
+<!-- ── Announcement bar ─────────────────────────── -->
+<div class="announce-bar">
+  <div class="announce-track" id="announce-track">
+    <span>NEW CONSULTATION PACKAGES — FROM $1,500 &nbsp;<span class="strip-dot">◆</span>&nbsp; LEARN MORE</span>
+    <span>NOW BOOKING SPRING 2026 PROJECTS &nbsp;<span class="strip-dot">◆</span>&nbsp; EXPLORE OUR WORK</span>
+    <span>HAUS® STUDIO — WHERE SPACE BECOMES ART &nbsp;<span class="strip-dot">◆</span>&nbsp; BOOK NOW</span>
+    <span>NEW CONSULTATION PACKAGES — FROM $1,500 &nbsp;<span class="strip-dot">◆</span>&nbsp; LEARN MORE</span>
+    <span>NOW BOOKING SPRING 2026 PROJECTS &nbsp;<span class="strip-dot">◆</span>&nbsp; EXPLORE OUR WORK</span>
+    <span>HAUS® STUDIO — WHERE SPACE BECOMES ART &nbsp;<span class="strip-dot">◆</span>&nbsp; BOOK NOW</span>
+  </div>
+</div>
+
+<!-- ── Nav ─────────────────────────────────────── -->
+<nav id="main-nav">
+  <a href="#" class="nav-logo">Haus<span>®</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Projects</a></li>
+    <li><a href="#insights">Journal</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Book a consultation</a>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <span class="mobile-close" id="mobile-close">✕</span>
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#work" onclick="closeMobile()">Projects</a>
+  <a href="#insights" onclick="closeMobile()">Journal</a>
+  <a href="#pricing" onclick="closeMobile()">Pricing</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- ── Hero ────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-label">Interior Design Studio — Est. 2018</div>
+    <h1 class="hero-heading">
+      Spaces that<br/><em>inspire</em> living,<br/>not just shelter.
+    </h1>
+    <p class="hero-sub">
+      We craft bespoke interiors that balance beauty with function — from concept through completion, every detail is considered, every material chosen with intention.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Book a consultation →</a>
+      <a href="#work" class="btn-secondary">View our work</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img
+      class="hero-img"
+      src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=85&auto=format&fit=crop"
+      alt="Luxurious interior living room"
+    />
+    <div class="hero-badge">
+      <div class="badge-quote">"The space finally reflects who we are — calm, considered, alive."</div>
+      <div class="badge-meta">
+        <img class="badge-avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&q=80" alt="Client"/>
+        <div>
+          <div class="badge-name">Sophia Marchetti</div>
+          <div class="badge-role">Homeowner, Milan Villa Project</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      Scroll
+    </div>
+  </div>
+</section>
+
+<!-- ── Scrolling strip ─────────────────────────── -->
+<div class="strip">
+  <div class="strip-track">
+    <span class="strip-item">Residential Interiors <span class="strip-dot">✦</span></span>
+    <span class="strip-item">Commercial Spaces <span class="strip-dot">✦</span></span>
+    <span class="strip-item">Material Curation <span class="strip-dot">✦</span></span>
+    <span class="strip-item">Space Planning <span class="strip-dot">✦</span></span>
+    <span class="strip-item">Custom Furniture <span class="strip-dot">✦</span></span>
+    <span class="strip-item">Art Direction <span class="strip-dot">✦</span></span>
+    <span class="strip-item">Residential Interiors <span class="strip-dot">✦</span></span>
+    <span class="strip-item">Commercial Spaces <span class="strip-dot">✦</span></span>
+    <span class="strip-item">Material Curation <span class="strip-dot">✦</span></span>
+    <span class="strip-item">Space Planning <span class="strip-dot">✦</span></span>
+    <span class="strip-item">Custom Furniture <span class="strip-dot">✦</span></span>
+    <span class="strip-item">Art Direction <span class="strip-dot">✦</span></span>
+  </div>
+</div>
+
+<!-- ── About ───────────────────────────────────── -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div>
+      <div class="section-label reveal">About us</div>
+      <h2 class="about-heading reveal reveal-delay-1">
+        We help <em>thoughtful</em> clients transform spaces into stories worth living in.
+      </h2>
+    </div>
+    <div class="about-right">
+      <p class="about-text reveal reveal-delay-1">
+        From the first sketch to final styling, we guide every project with care. Our studio works across residential and commercial contexts — drawing on a curated network of craftspeople, artisans, and suppliers to realise interiors of genuine distinction.
+      </p>
+      <p class="about-text reveal reveal-delay-2">
+        We believe great interiors don't shout. They simply feel right — coherent, generous, and unmistakably personal.
+      </p>
+      <a href="#work" class="about-link reveal reveal-delay-3">See our projects →</a>
+    </div>
+
+    <div class="about-testimonial reveal reveal-delay-2">
+      <div class="test-text">
+        <p class="test-quote">"Working with Haus felt effortless. The final result wasn't just a beautiful home — it was a place we're genuinely proud to call ours."</p>
+        <div class="test-person">
+          <img class="test-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" alt="Client"/>
+          <div>
+            <div class="test-name">Elena Voss</div>
+            <div class="test-role">CEO at Forma Living, Berlin</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-img">
+        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80&auto=format&fit=crop" alt="Interior project"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Benefits ────────────────────────────────── -->
+<section class="benefits">
+  <div class="benefits-intro">
+    <div>
+      <div class="section-label reveal">Benefits</div>
+      <h2 class="benefits-heading reveal reveal-delay-1">
+        Design that serves life — not just the photograph.
+      </h2>
+    </div>
+    <p class="benefits-sub reveal reveal-delay-2">
+      Our clients come to us because they want more than a beautiful mood board. They want interiors that function beautifully, endure, and reflect who they truly are.
+    </p>
+  </div>
+
+  <div class="benefits-grid">
+    <div class="benefit-card reveal">
+      <div class="benefit-icon">🏛️</div>
+      <div class="benefit-num">Flex</div>
+      <div class="benefit-title">Tailored packages</div>
+      <div class="benefit-desc">
+        Clear scopes for every stage of your project — from a single room refresh to a complete build from shell.
+        <div class="notification-card">
+          <div class="notif-dot"></div>
+          <div class="notif-text">
+            <strong>New consultation booked</strong>Just now · Penthouse, Amsterdam
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="benefit-card reveal reveal-delay-1">
+      <div class="benefit-icon">⚡</div>
+      <div class="benefit-num">24/7</div>
+      <div class="benefit-title">Priority support</div>
+      <div class="benefit-desc">Direct access to your lead designer throughout the project. Fast responses, real decisions — no gatekeeping.</div>
+    </div>
+
+    <div class="benefit-card reveal reveal-delay-2">
+      <div class="benefit-icon">📐</div>
+      <div class="benefit-num">6 wks</div>
+      <div class="benefit-title">Fast concept delivery</div>
+      <div class="benefit-desc">From kickoff to full concept presentation, most projects reach a decisive direction within six weeks. We keep things moving without sacrificing depth.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Work / Case Studies ─────────────────────── -->
+<section class="work" id="work">
+  <div class="work-header">
+    <div>
+      <div class="section-label reveal">Work</div>
+      <h2 class="work-heading reveal reveal-delay-1">
+        Case Studies
+        <br/><span style="font-size:.55em; color:var(--mid); font-weight:300; font-style:italic;">Featured projects ©2022–25</span>
+      </h2>
+    </div>
+    <div class="work-right reveal reveal-delay-2">
+      <p class="work-desc">Our projects reveal what design can unlock — sharper living, calmer working, spaces that feel inevitable once complete.</p>
+      <a href="#work" class="btn-primary" style="align-self:flex-start">Discover all projects →</a>
     </div>
   </div>
 
-  <!-- ────────────────────────────────────────────────
-       NAVIGATION — Minimal, fixed, breathes with scroll.
-       ──────────────────────────────────────────────── -->
-  <header class=\"nav\" data-nav>
-    <a class=\"nav__mark\" href=\"#top\" aria-label=\"Serene Space Designs — home\">
-      <span class=\"nav__mark-symbol\">S<i>·</i>S</span>
-      <span class=\"nav__mark-word\">Serene Space</span>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <img class="project-img" src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=900&q=80&auto=format&fit=crop" alt="Villa Conte project"/>
+      <div class="project-overlay"></div>
+      <div class="project-info">
+        <div class="project-tags"><span class="project-tag">Residential</span><span class="project-tag">Full Renovation</span></div>
+        <div class="project-name">Villa Conte</div>
+        <div class="project-desc">A Tuscan estate reimagined for contemporary life</div>
+      </div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-1">
+      <img class="project-img" src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80&auto=format&fit=crop" alt="Studio Alvar project"/>
+      <div class="project-overlay"></div>
+      <div class="project-info">
+        <div class="project-tags"><span class="project-tag">Commercial</span><span class="project-tag">Workplace</span></div>
+        <div class="project-name">Studio Alvar</div>
+        <div class="project-desc">A creative agency reborn in warm concrete and oak</div>
+      </div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-2">
+      <img class="project-img" src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&q=80&auto=format&fit=crop" alt="The Marsh House project"/>
+      <div class="project-overlay"></div>
+      <div class="project-info">
+        <div class="project-tags"><span class="project-tag">Residential</span><span class="project-tag">New Build</span></div>
+        <div class="project-name">The Marsh House</div>
+        <div class="project-desc">Coastal living designed to breathe with the landscape</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Methodology ─────────────────────────────── -->
+<section class="methodology">
+  <div class="method-header">
+    <div>
+      <div class="section-label reveal" style="color:rgba(200,169,126,.6)">Methodology</div>
+      <h2 class="method-heading reveal reveal-delay-1">
+        The best spaces don't happen by accident. They come from a proven process.
+      </h2>
+    </div>
+    <div class="method-right reveal reveal-delay-2">
+      <p class="method-desc">We begin with deep listening, move through rigorous research, and arrive at design that aligns with how you live — not just how things look in photos.</p>
+      <div class="method-links">
+        <a href="#contact" class="method-link">Let's work together</a>
+        <a href="#work" class="method-link">View case studies</a>
+        <a href="#about" class="method-link">Our methodology</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="steps-grid">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <div class="step-title">Discovery</div>
+      <div class="step-desc">We learn how you live, what matters to you, and what the space needs to do. Site visits, interviews, and spatial analysis.</div>
+    </div>
+    <div class="step reveal reveal-delay-1">
+      <div class="step-num">02</div>
+      <div class="step-title">Concept</div>
+      <div class="step-desc">A clear creative direction — mood, materiality, spatial sequence — presented before any detail decisions are made.</div>
+    </div>
+    <div class="step reveal reveal-delay-2">
+      <div class="step-num">03</div>
+      <div class="step-title">Design</div>
+      <div class="step-desc">Full drawings, material specifications, furniture selections, lighting plans, and supplier coordination — all in one place.</div>
+    </div>
+    <div class="step reveal reveal-delay-3">
+      <div class="step-num">04</div>
+      <div class="step-title">Delivery</div>
+      <div class="step-desc">We oversee installation, style the final space, and ensure every detail matches the vision. You arrive to something complete.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Services ────────────────────────────────── -->
+<section class="services" id="services">
+  <div class="services-layout">
+    <div>
+      <div class="section-label reveal">Services</div>
+      <h2 class="services-heading reveal reveal-delay-1">
+        A full-service studio for interiors that endure.
+      </h2>
+      <p class="services-sub reveal reveal-delay-2">
+        From a single-room consultation to a complete build programme, our services are designed to meet you where you are — and take you somewhere remarkable.
+      </p>
+
+      <div class="reveal reveal-delay-2">
+        <div class="expertise-label">Disciplines</div>
+        <div class="tag-cloud">
+          <span class="tag">Space Planning</span>
+          <span class="tag">Material Sourcing</span>
+          <span class="tag">Furniture Design</span>
+          <span class="tag">Lighting Design</span>
+          <span class="tag">Art Curation</span>
+          <span class="tag">Styling</span>
+          <span class="tag">Project Management</span>
+          <span class="tag">Concept Development</span>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-3">
+        <div class="expertise-label">Sectors</div>
+        <div class="tag-cloud">
+          <span class="tag">Residential</span>
+          <span class="tag">Hospitality</span>
+          <span class="tag">Retail</span>
+          <span class="tag">Workplace</span>
+          <span class="tag">New Build</span>
+          <span class="tag">Renovation</span>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-3" style="margin-top:8px">
+        <div class="featured-label">Featured in</div>
+        <div class="press-list">
+          <span class="press-item">Dezeen</span>
+          <span class="press-item">AD Italia</span>
+          <span class="press-item">Wallpaper*</span>
+          <span class="press-item">Frame</span>
+          <span class="press-item">Elle Décor</span>
+          <span class="press-item">Monocle</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="services-right reveal reveal-delay-2">
+      <div class="showreel-card">
+        <img class="showreel-img" src="https://images.unsplash.com/photo-1616137466211-f939a420be84?w=800&q=80&auto=format&fit=crop" alt="Studio showreel"/>
+        <div class="showreel-play">
+          <div class="play-btn"><div class="play-arrow"></div></div>
+          <div class="showreel-text">Watch our process / 2022–25</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Testimonials ────────────────────────────── -->
+<section class="testimonials" id="testimonials">
+  <div class="test-header">
+    <div>
+      <div class="section-label reveal">Testimonials</div>
+      <h2 class="test-heading reveal reveal-delay-1">
+        Our work speaks loudest through the spaces it creates. Here's what clients say.
+      </h2>
+    </div>
+    <div class="test-meta reveal reveal-delay-2">
+      <div class="rating-badge">
+        <span class="rating-stars">★★★★★</span>
+        <span class="rating-num">4.9/5</span>
+      </div>
+      <div class="rating-sub">Average rating · Trusted by 40+ clients</div>
+      <a href="#contact" class="about-link">Leave a review →</a>
+    </div>
+  </div>
+
+  <div class="photos-strip reveal">
+    <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=600&q=75&auto=format&fit=crop" alt="Interior 1"/>
+    <img src="https://images.unsplash.com/photo-1615529328331-f8917597711f?w=600&q=75&auto=format&fit=crop" alt="Interior 2"/>
+    <img src="https://images.unsplash.com/photo-1600210491369-e753d80a41f3?w=600&q=75&auto=format&fit=crop" alt="Interior 3"/>
+    <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=600&q=75&auto=format&fit=crop" alt="Interior 4"/>
+    <img src="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?w=600&q=75&auto=format&fit=crop" alt="Interior 5"/>
+  </div>
+
+  <div class="testimonial-slider reveal reveal-delay-1">
+    <div class="testimonial-card active" data-index="0">
+      <p class="t-quote">"We'd worked with two studios before Haus — and neither quite got it. The spaces they designed looked good but didn't feel like us. Haus was completely different. They listened first, then created something we love coming home to."</p>
+      <div class="t-person">
+        <img class="t-avatar" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&q=80" alt="Client"/>
+        <div>
+          <div class="t-name">Frankie Adler</div>
+          <div class="t-role">Co-owner, The Marsh House</div>
+        </div>
+      </div>
+      <div class="t-controls">
+        <button class="t-btn" onclick="prevTest()">←</button>
+        <button class="t-btn" onclick="nextTest()">→</button>
+        <span class="t-counter" id="t-counter">01 / 04</span>
+      </div>
+    </div>
+
+    <div class="testimonial-card" data-index="1">
+      <p class="t-quote">"The transformation of our office was beyond what we imagined. The team understood the culture of our studio perfectly — the result is a space where creativity genuinely flows. Every visitor comments on it immediately."</p>
+      <div class="t-person">
+        <img class="t-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Client"/>
+        <div>
+          <div class="t-name">James Thornton</div>
+          <div class="t-role">Founder, Studio Alvar</div>
+        </div>
+      </div>
+      <div class="t-controls">
+        <button class="t-btn" onclick="prevTest()">←</button>
+        <button class="t-btn" onclick="nextTest()">→</button>
+        <span class="t-counter" id="t-counter-1">02 / 04</span>
+      </div>
+    </div>
+
+    <div class="testimonial-card" data-index="2">
+      <p class="t-quote">"I was sceptical about investing in professional interior design — but Villa Conte changed my mind completely. The value added to the property alone was significant. The experience of living there is beyond that."</p>
+      <div class="t-person">
+        <img class="t-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" alt="Client"/>
+        <div>
+          <div class="t-name">Lucia Ferrari</div>
+          <div class="t-role">Owner, Villa Conte</div>
+        </div>
+      </div>
+      <div class="t-controls">
+        <button class="t-btn" onclick="prevTest()">←</button>
+        <button class="t-btn" onclick="nextTest()">→</button>
+        <span class="t-counter" id="t-counter-2">03 / 04</span>
+      </div>
+    </div>
+
+    <div class="testimonial-card" data-index="3">
+      <p class="t-quote">"Haus handled everything — from sourcing unusual stone for the kitchen to coordinating six different tradespeople on site. We barely had to think about logistics. We just watched our home become itself."</p>
+      <div class="t-person">
+        <img class="t-avatar" src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=100&q=80" alt="Client"/>
+        <div>
+          <div class="t-name">Marcus & Nadia Wolfe</div>
+          <div class="t-role">Clients, Amsterdam Penthouse</div>
+        </div>
+      </div>
+      <div class="t-controls">
+        <button class="t-btn" onclick="prevTest()">←</button>
+        <button class="t-btn" onclick="nextTest()">→</button>
+        <span class="t-counter" id="t-counter-3">04 / 04</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-bar reveal">
+    <div class="stat">
+      <div class="stat-num">50<span>+</span></div>
+      <div class="stat-label">Spaces designed across residential and commercial sectors</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3<span>×</span></div>
+      <div class="stat-label">Faster concept-to-decision compared to traditional studios</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">94<span>%</span></div>
+      <div class="stat-label">Of clients commission us for a second project</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Pricing ─────────────────────────────────── -->
+<section class="pricing" id="pricing">
+  <div class="pricing-header">
+    <div class="section-label reveal" style="justify-content:center; color:rgba(200,169,126,.6)">Pricing</div>
+    <h2 class="pricing-heading reveal reveal-delay-1">Plans that fit your project</h2>
+    <p class="pricing-sub reveal reveal-delay-2">No vague estimates. No surprises. Three clear options designed to match where your project is — and where it's going.</p>
+  </div>
+
+  <div class="pricing-cards">
+    <div class="price-card reveal">
+      <div class="price-tier">Essentials</div>
+      <div class="price-tagline">Need direction? We'll give you clarity and a plan.</div>
+      <div class="price-amount">
+        <span class="price-currency">$</span><span class="price-num">1,500</span>
+      </div>
+      <div class="price-period">/room or consultation</div>
+      <a href="#contact" class="price-cta">Start your project</a>
+      <ul class="price-features">
+        <li>Space planning consultation</li>
+        <li>Material & palette direction</li>
+        <li>Furniture recommendations</li>
+        <li>Full brief document</li>
+      </ul>
+    </div>
+
+    <div class="price-card featured reveal reveal-delay-1">
+      <div class="price-badge">Most popular</div>
+      <div class="price-tier">Studio</div>
+      <div class="price-tagline">Ready to transform? We'll take you all the way.</div>
+      <div class="price-amount">
+        <span class="price-currency">$</span><span class="price-num">6,500</span>
+      </div>
+      <div class="price-period">/month</div>
+      <a href="#contact" class="price-cta">Let's work together</a>
+      <ul class="price-features">
+        <li>Everything in Essentials</li>
+        <li>Full concept & mood direction</li>
+        <li>Technical drawings & schedules</li>
+        <li>Supplier & trade sourcing</li>
+        <li>On-site visits & oversight</li>
+        <li>Styling & final installation</li>
+      </ul>
+    </div>
+
+    <div class="price-card reveal reveal-delay-2">
+      <div class="price-tier">À La Carte</div>
+      <div class="price-tagline">Got a large project or specific scope? Let's build it together.</div>
+      <div class="price-amount" style="font-size:36px; font-family:'Cormorant Garamond',serif; color:var(--cream); font-weight:300;">Custom</div>
+      <div class="price-period">Project-based pricing</div>
+      <a href="#contact" class="price-cta">Book a meeting</a>
+      <ul class="price-features">
+        <li>Scoped to your full project</li>
+        <li>Complete studio team access</li>
+        <li>Project management included</li>
+        <li>Priority scheduling</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ──────────────────────────────────────── -->
+<section class="faq" id="faq">
+  <div class="faq-layout">
+    <div>
+      <div class="section-label reveal">FAQ</div>
+      <h2 class="faq-heading reveal reveal-delay-1">Before you begin, here are answers to what clients ask most.</h2>
+      <div class="faq-person reveal reveal-delay-2">
+        <img class="faq-person-img" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&q=80" alt="Design lead"/>
+        <div class="faq-person-name">Ingrid Hase</div>
+        <div class="faq-person-role">Lead Designer at Haus®</div>
+        <a href="#contact" class="faq-person-link">Ask a question →</a>
+      </div>
+    </div>
+
+    <div class="accordion reveal reveal-delay-2">
+      <div class="acc-item">
+        <div class="acc-header">
+          <div class="acc-question">How long does an interior project take?</div>
+          <div class="acc-icon">+</div>
+        </div>
+        <div class="acc-body"><p>Most residential projects run between 3 and 12 months depending on scope and build complexity. A single-room concept might wrap in 6 weeks. A full renovation with custom joinery and sourcing from abroad takes longer — and we'd rather be honest about that than over-promise.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-header">
+          <div class="acc-question">Do I need an architect already, or do you handle that?</div>
+          <div class="acc-icon">+</div>
+        </div>
+        <div class="acc-body"><p>We work with your existing architect or can recommend trusted partners we've collaborated with for years. On smaller projects with no structural changes, we often handle all technical drawings ourselves. We'll advise you on the right setup at the start.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-header">
+          <div class="acc-question">Can I be involved, or do you handle everything?</div>
+          <div class="acc-icon">+</div>
+        </div>
+        <div class="acc-body"><p>As much or as little as you'd like. Some clients love the process — they join site visits, weigh in on every material choice. Others prefer to hand off fully and arrive to a completed space. We tailor our process to how you work best.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-header">
+          <div class="acc-question">Do you work outside your home country?</div>
+          <div class="acc-icon">+</div>
+        </div>
+        <div class="acc-body"><p>Yes. We've delivered projects in Italy, the Netherlands, Portugal, and the UK. International projects involve additional planning, but we have established networks of contractors and suppliers in several European markets. Reach out and we'll tell you honestly whether it's feasible.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-header">
+          <div class="acc-question">How do payments work?</div>
+          <div class="acc-icon">+</div>
+        </div>
+        <div class="acc-body"><p>We work on a 30% deposit, milestone-based structure for larger projects, or a simple 50/50 split for consultations and concept packages. We keep it transparent and fair, and everything is outlined before you commit.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Insights ─────────────────────────────────── -->
+<section class="insights" id="insights">
+  <div class="insights-header">
+    <div>
+      <div class="section-label reveal">Journal</div>
+      <h2 class="insights-heading reveal reveal-delay-1">Our journal explores how thoughtful design changes how we feel in space.</h2>
+    </div>
+    <a href="#insights" class="btn-secondary reveal reveal-delay-2">All articles →</a>
+  </div>
+
+  <div class="insights-grid">
+    <a href="#" class="article-card reveal">
+      <div class="article-img">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=75&auto=format&fit=crop" alt="Article 1"/>
+      </div>
+      <div class="article-body">
+        <div class="article-cat">Materials</div>
+        <div class="article-title">Why Natural Stone Outlasts Every Trend</div>
+        <div class="article-date">14 May 2025</div>
+      </div>
     </a>
-
-    <nav class=\"nav__links\" aria-label=\"Primary\">
-      <a href=\"#philosophy\">Philosophy</a>
-      <a href=\"#practice\">Practice</a>
-      <a href=\"#works\">Works</a>
-      <a href=\"#process\">Process</a>
-      <a href=\"#contact\">Contact</a>
-    </nav>
-
-    <a href=\"#contact\" class=\"nav__cta\">
-      <span>Begin a conversation</span>
-      <i aria-hidden=\"true\">↗</i>
+    <a href="#" class="article-card reveal reveal-delay-1">
+      <div class="article-img">
+        <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=600&q=75&auto=format&fit=crop" alt="Article 2"/>
+      </div>
+      <div class="article-body">
+        <div class="article-cat">Process</div>
+        <div class="article-title">The Power of a Strong Design Brief — and How to Write One</div>
+        <div class="article-date">2 April 2025</div>
+      </div>
     </a>
+    <a href="#" class="article-card reveal reveal-delay-2">
+      <div class="article-img">
+        <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=600&q=75&auto=format&fit=crop" alt="Article 3"/>
+      </div>
+      <div class="article-body">
+        <div class="article-cat">Living</div>
+        <div class="article-title">Light First: Why Architects Think About Windows Before Walls</div>
+        <div class="article-date">18 March 2025</div>
+      </div>
+    </a>
+  </div>
+</section>
 
-    <button class=\"nav__menu\" data-menu-toggle aria-label=\"Open menu\" aria-expanded=\"false\">
-      <span></span><span></span>
-    </button>
-  </header>
+<!-- ── Contact ─────────────────────────────────── -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div>
+      <div class="section-label reveal">Contact</div>
+      <h2 class="contact-heading reveal reveal-delay-1">
+        If your home doesn't feel like you yet — we're here to change that.
+      </h2>
+      <p class="contact-sub reveal reveal-delay-2">
+        Reach out and you'll receive a considered response, an honest conversation, and a clear path forward. Whether it's a quick question or a ready-to-start project.
+      </p>
+      <div class="form reveal reveal-delay-2">
+        <div class="form-field">
+          <label>Your name *</label>
+          <input type="text" placeholder="Sophia Marchetti"/>
+        </div>
+        <div class="form-field">
+          <label>Email address *</label>
+          <input type="email" placeholder="sophia@example.com"/>
+        </div>
+        <div class="form-field">
+          <label>Project type</label>
+          <input type="text" placeholder="e.g. Residential, full renovation — Amsterdam"/>
+        </div>
+        <div class="form-field">
+          <label>Tell us more *</label>
+          <textarea rows="4" placeholder="Describe your space, what you're hoping for, and any constraints we should know about…"></textarea>
+        </div>
+        <button class="form-submit" type="button">
+          Send message
+          <span>→</span>
+        </button>
+      </div>
+    </div>
 
-  <!-- Mobile overlay menu -->
-  <div class=\"menu\" data-menu aria-hidden=\"true\">
-    <div class=\"menu__inner\">
+    <div class="contact-right reveal reveal-delay-3">
+      <div class="contact-img">
+        <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=800&q=80&auto=format&fit=crop" alt="Haus studio"/>
+      </div>
+      <div class="contact-info">
+        <div class="contact-info-item">
+          <div class="info-icon">✉</div>
+          <div>
+            <div class="info-label">Email</div>
+            <div class="info-val">hello@haus.studio</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="info-icon">☎</div>
+          <div>
+            <div class="info-label">Phone</div>
+            <div class="info-val">+31 20 123 4567</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="info-icon">📍</div>
+          <div>
+            <div class="info-label">Studio</div>
+            <div class="info-val">Prinsengracht 412, Amsterdam</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ──────────────────────────────────── -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="footer-logo">Haus<span>®</span></a>
+      <p class="footer-tagline">With Haus, every element of your interior works together — beauty, function, and meaning. Not just a space. A home.</p>
+      <div class="newsletter-label">Newsletter — never miss an update</div>
+      <div class="newsletter-form">
+        <input class="newsletter-input" type="email" placeholder="Your email address"/>
+        <button class="newsletter-btn">Subscribe</button>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Navigation</h4>
       <ul>
-        <li><a href=\"#philosophy\" data-menu-link>Philosophy</a></li>
-        <li><a href=\"#practice\" data-menu-link>Practice</a></li>
-        <li><a href=\"#works\" data-menu-link>Works</a></li>
-        <li><a href=\"#process\" data-menu-link>Process</a></li>
-        <li><a href=\"#contact\" data-menu-link>Contact</a></li>
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Projects</a></li>
+        <li><a href="#insights">Journal</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
-      <div class=\"menu__foot\">
-        <span>Studio · Via Solferino 14, Milano</span>
-        <a href=\"mailto:hello@serenespace.studio\">hello@serenespace.studio</a>
-      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Social</h4>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Pinterest</a></li>
+        <li><a href="#">Behance</a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">YouTube</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Cookie Settings</a></li>
+      </ul>
     </div>
   </div>
 
-  <main id=\"top\">
-
-    <!-- ────────────────────────────────────────────────
-         SECTION 1 · HERO
-         Goal: Immediate emotional impact. One slow breath.
-         ──────────────────────────────────────────────── -->
-    <section class=\"hero\" data-section=\"hero\">
-      <div class=\"hero__frame\">
-        <img
-          class=\"hero__image\"
-          data-hero-image
-          src=\"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2400&q=80\"
-          alt=\"A travertine-lined living room with afternoon light\"
-          loading=\"eager\"
-          decoding=\"async\"
-        />
-        <div class=\"hero__veil\" aria-hidden=\"true\"></div>
-      </div>
-
-      <div class=\"hero__copy\">
-        <span class=\"eyebrow\" data-reveal>
-          <i>·</i> Architecture &amp; Interiors — Est. 2009
-        </span>
-
-        <h1 class=\"display\" data-split data-split-mode=\"lines\">
-          Space,<br/>
-          <em>slowed</em> down.
-        </h1>
-
-        <p class=\"hero__sub\" data-reveal data-reveal-delay=\"0.6\">
-          An atelier composing residences,<br/>
-          retreats and quiet interiors across<br/>
-          Milano, Como and the Lake of Lugano.
-        </p>
-
-        <div class=\"hero__meta\" data-reveal data-reveal-delay=\"0.9\">
-          <span>N 45.4642°</span>
-          <span>E 9.1900°</span>
-          <span>Milano — Italia</span>
-        </div>
-      </div>
-
-      <div class=\"hero__scroll\" data-reveal data-reveal-delay=\"1.1\" aria-hidden=\"true\">
-        <span>Scroll, slowly</span>
-        <i></i>
-      </div>
-
-      <div class=\"hero__index\" aria-hidden=\"true\">
-        <span>01 — Arrival</span>
-        <span>Vol. IX</span>
-      </div>
-    </section>
-
-    <!-- ────────────────────────────────────────────────
-         MARQUEE — A single, slow horizontal whisper.
-         ──────────────────────────────────────────────── -->
-    <section class=\"marquee\" aria-hidden=\"true\">
-      <div class=\"marquee__track\" data-marquee>
-        <span>Residential Architecture</span><i>✦</i>
-        <span>Interior Atelier</span><i>✦</i>
-        <span>Material Research</span><i>✦</i>
-        <span>Bespoke Furniture</span><i>✦</i>
-        <span>Site &amp; Landscape</span><i>✦</i>
-        <span>Residential Architecture</span><i>✦</i>
-        <span>Interior Atelier</span><i>✦</i>
-        <span>Material Research</span><i>✦</i>
-        <span>Bespoke Furniture</span><i>✦</i>
-        <span>Site &amp; Landscape</span><i>✦</i>
-      </div>
-    </section>
-
-    <!-- ────────────────────────────────────────────────
-         SECTION 2 · PHILOSOPHY
-         Goal: Slow down. Breathe. Make the user listen.
-         ──────────────────────────────────────────────── -->
-    <section class=\"philosophy\" id=\"philosophy\" data-section=\"philosophy\">
-      <div class=\"philosophy__rule\" aria-hidden=\"true\"><i data-rule></i></div>
-
-      <header class=\"section-head\">
-        <span class=\"section-head__no\">§ 02</span>
-        <span class=\"section-head__title\">Philosophy</span>
-      </header>
-
-      <h2 class=\"philosophy__quote display\" data-split data-split-mode=\"words\">
-        We do not decorate. We design the <em>air</em> between objects — the
-        pause between rooms, the <em>weight</em> of a doorway, the hour a wall
-        meets the sun.
-      </h2>
-
-      <div class=\"philosophy__foot\">
-        <p data-reveal>
-          A practice founded in Milano in 2009 by Elena Caradonna and
-          Tommaso Reni. Our work is residential, slow, and devotional
-          to the climate of a place.
-        </p>
-        <figure data-reveal data-reveal-delay=\"0.2\">
-          <img
-            src=\"https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=1600&q=80\"
-            alt=\"A quiet corridor in lime plaster\"
-            loading=\"lazy\"
-          />
-        </figure>
-      </div>
-    </section>
-
-    <!-- ────────────────────────────────────────────────
-         SECTION 3 · PRACTICE (Services)
-         Editorial, no cards, no icon grids — large imagery
-         layered against typographic statements.
-         ──────────────────────────────────────────────── -->
-    <section class=\"practice\" id=\"practice\" data-section=\"practice\">
-      <header class=\"section-head\">
-        <span class=\"section-head__no\">§ 03</span>
-        <span class=\"section-head__title\">Practice</span>
-      </header>
-
-      <article class=\"practice__row practice__row--a\">
-        <div class=\"practice__num\"><span>01</span></div>
-        <h3 class=\"practice__name display\">Architecture</h3>
-        <p class=\"practice__copy\">
-          Residences, villas and retreats — drawn from the orientation of a site,
-          the season of its light, and the memory of its stone.
-        </p>
-        <figure class=\"practice__media\" data-parallax=\"0.12\">
-          <img
-            src=\"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=80\"
-            alt=\"A modern residence carved into a hillside\"
-            loading=\"lazy\"
-          />
-        </figure>
-      </article>
-
-      <article class=\"practice__row practice__row--b\">
-        <div class=\"practice__num\"><span>02</span></div>
-        <h3 class=\"practice__name display\">Interiors</h3>
-        <p class=\"practice__copy\">
-          Tactile rooms composed in stone, oak and linen. Each interior is a
-          slow inventory of materials chosen for the way they will age.
-        </p>
-        <figure class=\"practice__media\" data-parallax=\"0.10\">
-          <img
-            src=\"https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=1800&q=80\"
-            alt=\"An interior in oak and warm beige\"
-            loading=\"lazy\"
-          />
-        </figure>
-      </article>
-
-      <article class=\"practice__row practice__row--c\">
-        <div class=\"practice__num\"><span>03</span></div>
-        <h3 class=\"practice__name display\">Material<br/>Research</h3>
-        <p class=\"practice__copy\">
-          A continuous study of stone, plaster, timber and metal. Carried out
-          with quarries, mills and artisans across Italy and Switzerland.
-        </p>
-        <figure class=\"practice__media\" data-parallax=\"0.14\">
-          <img
-            src=\"https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1800&q=80\"
-            alt=\"A study of travertine and bronze\"
-            loading=\"lazy\"
-          />
-        </figure>
-      </article>
-
-      <article class=\"practice__row practice__row--d\">
-        <div class=\"practice__num\"><span>04</span></div>
-        <h3 class=\"practice__name display\">Atelier<br/><em>— bespoke</em></h3>
-        <p class=\"practice__copy\">
-          A small atelier producing furniture, doors and fittings in
-          collaboration with the woodworkers and bronze foundries of Brianza.
-        </p>
-        <figure class=\"practice__media\" data-parallax=\"0.10\">
-          <img
-            src=\"https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1800&q=80\"
-            alt=\"A bespoke detail in oak and bronze\"
-            loading=\"lazy\"
-          />
-        </figure>
-      </article>
-    </section>
-
-    <!-- ────────────────────────────────────────────────
-         SECTION 4 · WORKS — Monumental, horizontal.
-         The one (and only) horizontal sequence on the site.
-         ──────────────────────────────────────────────── -->
-    <section class=\"works\" id=\"works\" data-section=\"works\">
-      <header class=\"works__head\">
-        <span class=\"section-head__no\">§ 04</span>
-        <h2 class=\"works__title display\" data-split data-split-mode=\"lines\">
-          Selected<br/><em>works,</em> 2019&ndash;2025
-        </h2>
-        <p class=\"works__lede\">
-          A quiet portfolio of completed residences and interiors.
-          Drag, scroll or use the arrows to move horizontally.
-        </p>
-      </header>
-
-      <div class=\"works__rail\" data-rail>
-        <div class=\"works__track\" data-rail-track>
-
-          <figure class=\"work\">
-            <div class=\"work__frame\">
-              <img
-                src=\"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=80\"
-                alt=\"Casa Travertino, Brera\"
-                loading=\"lazy\"
-              />
-            </div>
-            <figcaption>
-              <span class=\"work__no\">No. 01</span>
-              <h3 class=\"work__name\">Casa Travertino</h3>
-              <p>Brera · Milano · 2024 — 320 m²</p>
-            </figcaption>
-          </figure>
-
-          <figure class=\"work\">
-            <div class=\"work__frame\">
-              <img
-                src=\"https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=2000&q=80\"
-                alt=\"Villa Helios, Lake Como\"
-                loading=\"lazy\"
-              />
-            </div>
-            <figcaption>
-              <span class=\"work__no\">No. 02</span>
-              <h3 class=\"work__name\">Villa Helios</h3>
-              <p>Tremezzo · Lake Como · 2023 — 740 m²</p>
-            </figcaption>
-          </figure>
-
-          <figure class=\"work\">
-            <div class=\"work__frame\">
-              <img
-                src=\"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=2000&q=80\"
-                alt=\"Atelier 47, Porta Romana\"
-                loading=\"lazy\"
-              />
-            </div>
-            <figcaption>
-              <span class=\"work__no\">No. 03</span>
-              <h3 class=\"work__name\">Atelier 47</h3>
-              <p>Porta Romana · Milano · 2024 — 210 m²</p>
-            </figcaption>
-          </figure>
-
-          <figure class=\"work\">
-            <div class=\"work__frame\">
-              <img
-                src=\"https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=2000&q=80\"
-                alt=\"Pavilion Noir, Engadin\"
-                loading=\"lazy\"
-              />
-            </div>
-            <figcaption>
-              <span class=\"work__no\">No. 04</span>
-              <h3 class=\"work__name\">Pavilion Noir</h3>
-              <p>Engadin · Switzerland · 2022 — 180 m²</p>
-            </figcaption>
-          </figure>
-
-          <figure class=\"work\">
-            <div class=\"work__frame\">
-              <img
-                src=\"https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=2000&q=80\"
-                alt=\"Casa Lucina, Lugano\"
-                loading=\"lazy\"
-              />
-            </div>
-            <figcaption>
-              <span class=\"work__no\">No. 05</span>
-              <h3 class=\"work__name\">Casa Lucina</h3>
-              <p>Lugano · Switzerland · 2025 — 410 m²</p>
-            </figcaption>
-          </figure>
-
-        </div>
-      </div>
-
-      <div class=\"works__progress\" aria-hidden=\"true\">
-        <span class=\"works__progress-label\">Drag · Scroll</span>
-        <span class=\"works__progress-bar\"><i data-rail-progress></i></span>
-        <span class=\"works__progress-count\"><i data-rail-index>01</i><em>/05</em></span>
-      </div>
-    </section>
-
-    <!-- ────────────────────────────────────────────────
-         SECTION 5 · PROCESS — Cinematic progression.
-         No boxes. Long vertical breath. Four quiet acts.
-         ──────────────────────────────────────────────── -->
-    <section class=\"process\" id=\"process\" data-section=\"process\">
-      <header class=\"section-head section-head--center\">
-        <span class=\"section-head__no\">§ 05</span>
-        <span class=\"section-head__title\">Process</span>
-      </header>
-
-      <h2 class=\"process__title display\" data-split data-split-mode=\"lines\">
-        Four acts.<br/>One <em>long</em> conversation.
-      </h2>
-
-      <ol class=\"process__acts\">
-        <li class=\"process__act\" data-act>
-          <span class=\"process__roman\">I.</span>
-          <h3 class=\"process__name\">Listening</h3>
-          <p>
-            We begin with silence. A first visit to the site, in the season
-            you intend to live there. We take photographs of the light, not
-            the walls.
-          </p>
-        </li>
-
-        <li class=\"process__act\" data-act>
-          <span class=\"process__roman\">II.</span>
-          <h3 class=\"process__name\">Drafting</h3>
-          <p>
-            Six months of pencil. Plans, sections, models in plaster and
-            cardboard. We share drawings — never renders — until the
-            architecture is settled.
-          </p>
-        </li>
-
-        <li class=\"process__act\" data-act>
-          <span class=\"process__roman\">III.</span>
-          <h3 class=\"process__name\">Materialising</h3>
-          <p>
-            Stone is chosen at the quarry. Oak is selected from the log.
-            Every threshold, handle and joint is detailed by hand.
-          </p>
-        </li>
-
-        <li class=\"process__act\" data-act>
-          <span class=\"process__roman\">IV.</span>
-          <h3 class=\"process__name\">Living</h3>
-          <p>
-            We return after a year. We adjust a curtain, a shelf, a door.
-            A house is finished only when it is forgotten.
-          </p>
-        </li>
-      </ol>
-    </section>
-
-    <!-- ────────────────────────────────────────────────
-         SECTION 6 · MATERIAL — Tactile, subtle motion.
-         A horizontal strip of material plates that breathes.
-         ──────────────────────────────────────────────── -->
-    <section class=\"materials\" data-section=\"materials\">
-      <header class=\"section-head\">
-        <span class=\"section-head__no\">§ 06</span>
-        <span class=\"section-head__title\">Materials</span>
-      </header>
-
-      <h2 class=\"materials__lede display\" data-split data-split-mode=\"lines\">
-        Stone that <em>remembers</em>,<br/>timber that breathes.
-      </h2>
-
-      <ul class=\"materials__list\">
-        <li data-material>
-          <figure>
-            <img src=\"https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80\" alt=\"Roman travertine\" loading=\"lazy\" />
-          </figure>
-          <span class=\"materials__no\">M·01</span>
-          <h4>Roman Travertine</h4>
-          <p>Tivoli · vein-cut · honed</p>
-        </li>
-        <li data-material>
-          <figure>
-            <img src=\"https://images.unsplash.com/photo-1604147495798-57beb5d6af73?auto=format&fit=crop&w=1200&q=80\" alt=\"European oak\" loading=\"lazy\" />
-          </figure>
-          <span class=\"materials__no\">M·02</span>
-          <h4>European Oak</h4>
-          <p>Brianza · rift-sawn · soaped</p>
-        </li>
-        <li data-material>
-          <figure>
-            <img src=\"https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=1200&q=80\" alt=\"Lime plaster\" loading=\"lazy\" />
-          </figure>
-          <span class=\"materials__no\">M·03</span>
-          <h4>Lime Plaster</h4>
-          <p>Marmorino · seven layers</p>
-        </li>
-        <li data-material>
-          <figure>
-            <img src=\"https://images.unsplash.com/photo-1582582494700-fbb44cd23c0c?auto=format&fit=crop&w=1200&q=80\" alt=\"Brushed bronze\" loading=\"lazy\" />
-          </figure>
-          <span class=\"materials__no\">M·04</span>
-          <h4>Brushed Bronze</h4>
-          <p>Cast · patinated · waxed</p>
-        </li>
-        <li data-material>
-          <figure>
-            <img src=\"https://images.unsplash.com/photo-1605883705077-8d3d3cebe78c?auto=format&fit=crop&w=1200&q=80\" alt=\"Belgian linen\" loading=\"lazy\" />
-          </figure>
-          <span class=\"materials__no\">M·05</span>
-          <h4>Belgian Linen</h4>
-          <p>Heavy weave · undyed</p>
-        </li>
-      </ul>
-    </section>
-
-    <!-- ────────────────────────────────────────────────
-         SECTION 7 · SOCIAL PROOF — Quiet trust.
-         Two voices, large quotes, no logos parade.
-         ──────────────────────────────────────────────── -->
-    <section class=\"voices\" data-section=\"voices\">
-      <header class=\"section-head\">
-        <span class=\"section-head__no\">§ 07</span>
-        <span class=\"section-head__title\">In Print</span>
-      </header>
-
-      <div class=\"voices__grid\">
-        <blockquote class=\"voices__quote\" data-reveal>
-          <p>
-            “Caradonna and Reni design as if the house has always been there;
-            their work is less an act of building than of careful uncovering.”
-          </p>
-          <footer>
-            <span>Domus</span>
-            <i>·</i>
-            <span>Issue 1082</span>
-          </footer>
-        </blockquote>
-
-        <blockquote class=\"voices__quote\" data-reveal data-reveal-delay=\"0.2\">
-          <p>
-            “A studio that has reclaimed the most luxurious commodity in
-            contemporary architecture — patience.”
-          </p>
-          <footer>
-            <span>Wallpaper*</span>
-            <i>·</i>
-            <span>March, 2024</span>
-          </footer>
-        </blockquote>
-      </div>
-
-      <ul class=\"voices__press\" aria-label=\"Press\">
-        <li>Domus</li>
-        <li>Wallpaper*</li>
-        <li>AD Italia</li>
-        <li>Cereal</li>
-        <li>Casabella</li>
-        <li>Dezeen</li>
-      </ul>
-    </section>
-
-    <!-- ────────────────────────────────────────────────
-         SECTION 8 · ENDING — A final spatial moment.
-         Not a contact form. A long letter to the visitor.
-         ──────────────────────────────────────────────── -->
-    <section class=\"ending\" id=\"contact\" data-section=\"ending\">
-      <div class=\"ending__image\" aria-hidden=\"true\">
-        <img
-          src=\"https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&w=2400&q=80\"
-          alt=\"\"
-          loading=\"lazy\"
-        />
-      </div>
-
-      <div class=\"ending__inner\">
-        <span class=\"eyebrow\" data-reveal><i>·</i> § 08 — Coda</span>
-
-        <h2 class=\"ending__title display\" data-split data-split-mode=\"lines\">
-          Begin a <em>quiet</em><br/>conversation.
-        </h2>
-
-        <p class=\"ending__copy\" data-reveal data-reveal-delay=\"0.3\">
-          We take on a small number of commissions each year. If your
-          project asks for slowness, write to us in any season — we will
-          answer in the next.
-        </p>
-
-        <div class=\"ending__contact\" data-reveal data-reveal-delay=\"0.5\">
-          <a class=\"ending__mail\" href=\"mailto:hello@serenespace.studio\">
-            <span>hello@serenespace.studio</span>
-            <i aria-hidden=\"true\">↗</i>
-          </a>
-        </div>
-
-        <dl class=\"ending__meta\" data-reveal data-reveal-delay=\"0.7\">
-          <div>
-            <dt>Studio</dt>
-            <dd>Via Solferino 14<br/>20121 Milano · Italia</dd>
-          </div>
-          <div>
-            <dt>Hours</dt>
-            <dd>Tue — Fri<br/>10 : 00 — 18 : 00 CET</dd>
-          </div>
-          <div>
-            <dt>Telephone</dt>
-            <dd>+39 02 4948 7720</dd>
-          </div>
-          <div>
-            <dt>Coordinates</dt>
-            <dd>45.4719° N<br/>9.1810° E</dd>
-          </div>
-        </dl>
-      </div>
-    </section>
-
-    <!-- ────────────────────────────────────────────────
-         FOOTER — A long colophon, quietly editorial.
-         ──────────────────────────────────────────────── -->
-    <footer class=\"foot\">
-      <div class=\"foot__brand display\">Serene<br/>Space.</div>
-
-      <div class=\"foot__cols\">
-        <div>
-          <span>Visit</span>
-          <p>Via Solferino 14<br/>20121 Milano</p>
-        </div>
-        <div>
-          <span>Write</span>
-          <p><a href=\"mailto:hello@serenespace.studio\">hello@serenespace.studio</a></p>
-        </div>
-        <div>
-          <span>Follow</span>
-          <p>
-            <a href=\"#\" rel=\"noopener\">Instagram</a><br/>
-            <a href=\"#\" rel=\"noopener\">Are.na</a><br/>
-            <a href=\"#\" rel=\"noopener\">Journal</a>
-          </p>
-        </div>
-        <div>
-          <span>Colophon</span>
-          <p>Set in Fraunces &amp; Geist.<br/>Built in Milano, 2026.</p>
-        </div>
-      </div>
-
-      <div class=\"foot__rule\" aria-hidden=\"true\"></div>
-
-      <div class=\"foot__bottom\">
-        <span>© <span data-year>2026</span> · Serene Space Designs · All rights reserved.</span>
-        <span>P. IVA 09347820966</span>
-      </div>
-    </footer>
-
-  </main>
-
-  <!-- Cursor (desktop only, progressively enhanced) -->
-  <div class=\"cursor\" data-cursor aria-hidden=\"true\">
-    <i></i>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Haus Studio. All rights reserved.</div>
+    <div class="footer-socials">
+      <a href="#" class="social-link">Instagram</a>
+      <a href="#" class="social-link">Pinterest</a>
+      <a href="#" class="social-link">Behance</a>
+    </div>
   </div>
+</footer>
 
-  <!-- Libraries -->
-  <script src=\"https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js\" defer></script>
-  <script src=\"https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js\" defer></script>
-  <script src=\"https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js\" defer></script>
+<!-- ── Scripts ─────────────────────────────────── -->
+<script>
+  /* Cursor */
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animCursor() {
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    rx += (mx - rx) * .12; ry += (my - ry) * .12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animCursor);
+  }
+  animCursor();
+  document.querySelectorAll('a, button, .project-card, .acc-header, .t-btn').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
 
-  <script src=\"script.js\" defer></script>
+  /* Nav scroll */
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+    const prog = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+    document.getElementById('progress').style.width = prog + '%';
+  });
+
+  /* Mobile menu */
+  document.getElementById('hamburger').onclick = () => document.getElementById('mobile-menu').classList.add('open');
+  document.getElementById('mobile-close').onclick = () => document.getElementById('mobile-menu').classList.remove('open');
+  function closeMobile() { document.getElementById('mobile-menu').classList.remove('open'); }
+
+  /* Scroll reveal */
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  /* Accordion */
+  document.querySelectorAll('.acc-header').forEach(hdr => {
+    hdr.addEventListener('click', () => {
+      const item = hdr.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.acc-item').forEach(i => i.classList.remove('open'));
+      if(!wasOpen) item.classList.add('open');
+    });
+  });
+
+  /* Testimonials */
+  const cards = document.querySelectorAll('.testimonial-card');
+  let cur = 0;
+  function showTest(n) {
+    cards[cur].classList.remove('active');
+    cur = (n + cards.length) % cards.length;
+    cards[cur].classList.add('active');
+    document.getElementById('t-counter').textContent = '0' + (cur+1) + ' / 0' + cards.length;
+  }
+  window.nextTest = () => showTest(cur + 1);
+  window.prevTest = () => showTest(cur - 1);
+
+  /* Smooth anchor */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if(t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+
+  /* Parallax hero image */
+  const heroImg = document.querySelector('.hero-img');
+  if(heroImg) {
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      heroImg.style.transform = `scale(1) translateY(${y * 0.15}px)`;
+    }, { passive: true });
+  }
+</script>
 </body>
 </html>
